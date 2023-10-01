@@ -241,8 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e659e46842946c4c917c4b4ec96f9ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 1037680900}
-  settingButton: {fileID: 2016817508}
 --- !u!1 &8694864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,7 +2742,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 70}
-  m_SizeDelta: {x: 455, y: 50}
+  m_SizeDelta: {x: 510, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734337313
 MonoBehaviour:
@@ -2766,7 +2764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BEFORE DOWN
+  m_text: Before The Down
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 34556b70305c75d4b8a65c451ccdbe73, type: 2}
   m_sharedMaterial: {fileID: 8563019746381469020, guid: 34556b70305c75d4b8a65c451ccdbe73, type: 2}
