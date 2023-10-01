@@ -3,21 +3,19 @@
 # that you only replace the placeholder text, not the keys (e.g. TeamName, etc.)
 
 # 1. Your team's GitHub repository URL for project 2 (*not* project 1)
-RepoURL: https://github.com/COMP30019/...
+RepoURL: https://github.com/COMP30019/project-2-open-heimer-mid
 
 # 2. Since you are working in the same team for project 2, you should copy the
 #    below keys/values *verbatim* from your project 1 metadata.yml -- do not
 #    change them unless you have permission from the teaching team.
-TeamName: <team name>
+TeamName: <open-heimer-mid>
 TeamMembers:
-  - Name: <student name 1>
-    Email: ...@student.unimelb.edu.au
-  - Name: <student name 2>
-    Email: ...@student.unimelb.edu.au
-  - Name: <student name 3>
-    Email: ...@student.unimelb.edu.au
-  - Name: <student name 4>
-    Email: ...@student.unimelb.edu.au
+  - Name: Yuecheng Wang
+    Email: yuechengw@student.unimelb.edu.au
+  - Name: Junyan Lai
+    Email: junlai@student.unimelb.edu.au
+  - Name: Jingxuan Zhang
+    Email: jingxzhang3@student.unimelb.edu.au
 
 # 3. The below keys must be filled out by the given milestone deadlines, and
 #    you must also re-submit on Gradescope to register these changes officially
