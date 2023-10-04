@@ -101,11 +101,11 @@ void HandleAttack()
     {
         if (currentAttack == 1)
         {
-            attackAnimationDuration = 3.292f / 5.0f;
+            attackAnimationDuration = 3.292f / 10.0f;
         }
         else
         {
-            attackAnimationDuration = 5.375f / 5.0f;
+            attackAnimationDuration = 5.375f / 10.0f;
         }
         yield return new WaitForSeconds(attackAnimationDuration);
         animator.SetBool("Attack1", false);
@@ -128,7 +128,7 @@ void HandleAttack()
 
     IEnumerator ResetShieldBashAnimation()
     {
-        float shieldBashDuration = 3.292f / 5.0f; 
+        float shieldBashDuration = 3.292f / 10.0f; 
         yield return new WaitForSeconds(shieldBashDuration);
         animator.SetBool("ShieldBash", false);
         isAttacking = false;
