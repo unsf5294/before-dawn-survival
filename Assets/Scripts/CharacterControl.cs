@@ -32,7 +32,13 @@ public class CharacterControl : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveDirection = new Vector3(horizontal, 0, vertical).normalized;
+        // Get camera forward and right vectors, with no vertical component
+        Vector3 camFwd = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 camRight = Vector3.Scale(Camera.main.transform.right, new Vector3(1, 0, 1)).normalized;
+
+        // Adjust move direction relative to camera orientation
+        Vector3 moveDirection = vertical * camFwd + horizontal * camRight;
+
         if (moveDirection.magnitude > 0f)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);

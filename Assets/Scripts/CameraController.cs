@@ -35,13 +35,13 @@ public class CameraController : MonoBehaviour
 
     private void HandleCameraRotation()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            RotateAroundPlayer(-90);  // Rotate counter-clockwise
-        }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            RotateAroundPlayer(90);  // Rotate clockwise
+            RotateAroundPlayer(-45);  // Rotate counter-clockwise
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            RotateAroundPlayer(45);  // Rotate clockwise
         }
     }
 
