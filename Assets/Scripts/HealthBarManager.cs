@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class HealthBarManager : MonoBehaviour
 {
-    public Slider healthSlider;  // 
-    public float decreaseAmount = 10f;  // 
-    public float decreaseDuration = 5f; // 
+    public Slider healthSlider; 
+    public PlayerHealth playerHealth; // Reference to the player's health script
 
     private void Start()
     {
@@ -17,30 +16,23 @@ public class HealthBarManager : MonoBehaviour
             return;
         }
 
-        // 开始协程
-        StartCoroutine(DecreaseHealthOverTime());
+        if (playerHealth == null)
+        {
+            Debug.LogError("PlayerHealth reference is not set!");
+            return;
+        }
+
+        // Set the max value of the slider to match the player's max health
+        healthSlider.maxValue = playerHealth.MaxHealth;
+        healthSlider.value = playerHealth.CurrentHealth;
     }
 
-    private IEnumerator DecreaseHealthOverTime()
+    private void Update()
     {
-        while (healthSlider.value > 0)
+        if (playerHealth != null)
         {
-            float startValue = healthSlider.value;
-            float endValue = Mathf.Clamp(healthSlider.value - decreaseAmount, 0, healthSlider.maxValue);
-
-            float elapsed = 0f;
-            while (elapsed < decreaseDuration)
-            {
-                float newValue = Mathf.Lerp(startValue, endValue, elapsed / decreaseDuration);
-                healthSlider.value = newValue;
-
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            healthSlider.value = endValue;
-
-            yield return new WaitForSeconds(decreaseDuration);
+            // Update the slider's value to match the player's current health
+            healthSlider.value = playerHealth.CurrentHealth;
         }
     }
 }

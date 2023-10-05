@@ -1144,24 +1144,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &625063608 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6483505736887669977, guid: 68be00c2181a53441b815466655dc577, type: 3}
-  m_PrefabInstance: {fileID: 820163863}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &625063615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625063608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96fce729578aae04f906fea822eaea60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
 --- !u!1 &772388041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,14 +1366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 315886246381441635, guid: 68be00c2181a53441b815466655dc577, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6483505736887669977, guid: 68be00c2181a53441b815466655dc577, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 625063615}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68be00c2181a53441b815466655dc577, type: 3}
 --- !u!1001 &849697460
 PrefabInstance:
@@ -1458,6 +1436,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3c36c5e6a8823b408bcec4e8dc85a3d, type: 3}
+--- !u!1 &901440045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 901440047}
+  - component: {fileID: 901440046}
+  m_Layer: 0
+  m_Name: MonsterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &901440046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901440045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6769a36126a322b458ab96fc37cf164f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 6483505736887669977, guid: 68be00c2181a53441b815466655dc577, type: 3}
+  player: {fileID: 1548609127}
+  spawnInterval: 10
+--- !u!4 &901440047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901440045}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &982409728 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5744129166605383462, guid: 7179fd242f630964f846e7c618b04fd7, type: 3}
@@ -2171,8 +2196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 1313896306}
-  decreaseAmount: 1
-  decreaseDuration: 1
+  playerHealth: {fileID: 1548609128}
 --- !u!1 &1314035585
 GameObject:
   m_ObjectHideFlags: 0
@@ -3532,6 +3556,7 @@ SceneRoots:
   - {fileID: 502524668}
   - {fileID: 2071906242}
   - {fileID: 1063836661}
+  - {fileID: 901440047}
   - {fileID: 820163863}
   - {fileID: 307605387}
   - {fileID: 1795416038}

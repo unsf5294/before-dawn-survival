@@ -6,33 +6,66 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 1.0f;
     [SerializeField] private int damage = 5;
     [SerializeField] private float attackCooldown = 2.0f;
+    [SerializeField] private float trackRange = 10.0f; // Range within which monster starts tracking the player
 
     private float lastAttackTime = -2.0f;
+    private float lastDirectionChangeTime = 0f;
+    private float directionChangeInterval = 2f;
+    private Vector3 currentMoveDirection;
 
     private bool hasCollided = false;
 
     private void Update()
     {
-        if (!hasCollided)
+        if (Vector3.Distance(player.position, transform.position) <= trackRange)
         {
             MoveTowardsPlayer();
         }
+        else
+        {
+            RandomMovement();
+        }
+
+    }
+
+    public void SetPlayer(Transform playerTransform)
+    {
+        player = playerTransform;
     }
 
     void MoveTowardsPlayer()
     {
         // Tracking position
         Vector3 targetPosition = new Vector3(player.position.x, player.position.y + 1, player.position.z);
-
-        // Get direction
         Vector3 directionToPlayer = (targetPosition - transform.position).normalized;
-        
-        // Move
         transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
-        
+
         // Face the player
         Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+    }
+
+    void RandomMovement()
+    {
+        if (Time.time - lastDirectionChangeTime > directionChangeInterval)
+        {
+            lastDirectionChangeTime = Time.time;
+            currentMoveDirection = ChooseRandomDirection();
+        }
+        transform.position += currentMoveDirection * moveSpeed * Time.deltaTime;
+    }
+
+    Vector3 ChooseRandomDirection()
+    {
+        int randomDirection = Random.Range(0, 4);
+        switch (randomDirection)
+        {
+            case 0: return transform.forward;
+            case 1: return -transform.forward; // backward
+            case 2: return transform.right;
+            case 3: return -transform.right; // left
+            default: return Vector3.zero;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
