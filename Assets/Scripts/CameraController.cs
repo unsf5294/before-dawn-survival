@@ -24,13 +24,6 @@ public class CameraController : MonoBehaviour
 
         // After rotating, adjust the position to maintain the offset
         transform.position = Player.position + offset;
-
-        if (test && Input.GetKey(KeyCode.Space))
-        {
-            setCameraShake(0.2f, 0.5f, true);
-        }
-
-        cameraShake();
     }
 
     private void HandleCameraRotation()
