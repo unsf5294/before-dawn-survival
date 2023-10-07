@@ -22,7 +22,56 @@ placeholder for it [here](GDD.md).
 
 ## Evaluation Plan
 
-TODO (due milestone 1) - see specification for details
+### Evaluation Techniques:
+
+- **Playtesting:** Engage participants to play the game and gather qualitative feedback on their experience.
+- **Usability Testing:** Identify any interface or navigation issues players might encounter.
+- **Questionnaires:** Use post-play surveys to gather player feedback on various aspects like gameplay mechanics, faith points system, and overall experience.
+
+### Tasks for Participants:
+
+1. Play the game until dawn (5 minutes) multiple times to experience the randomness.
+2. Engage with different random skills and relics to evaluate their impact on faith points.
+3. Interact with in-game UI and settings to test usability.
+
+### Participants:
+
+- **Recruitment:** Recruit participants via social media announcements, game forums, and through our company website.
+- **Qualifying Criteria:** Participants should have experience with survival games, aged between 16-35, and have a mix of casual and core gamers.
+
+### Data Collection:
+
+- **Data Type:** 
+    - Gameplay duration and success rates.
+    - Frequency of faith point depletion to 0.
+    - Most and least used random skills.
+    - Qualitative feedback on player experience.
+- **Collection Method:** Use built-in game analytics for quantitative data and post-play surveys for qualitative data.
+- **Tools:** Game analytics platform (e.g., Unity Analytics) and online survey tools (e.g., SurveyMonkey).
+
+### Data Analysis:
+
+- **Quantitative Analysis:** Use statistical tools to identify patterns in gameplay success, skill usage, and faith point management.
+- **Qualitative Analysis:** Conduct thematic analysis of player feedback to understand game strengths, weaknesses, and areas of improvement.
+- **Metrics:** 
+    - Player retention rate.
+    - Average faith points at the end of a game.
+    - Frequency of skill use.
+    - Overall player satisfaction scores from surveys.
+
+### Timeline:
+
+- **Evaluation Duration:** 2 weeks.
+- **Data Analysis:** 1 week post-evaluation.
+- **Game Modifications:** Implement changes in the subsequent month based on the feedback received.
+
+### Responsibilities:
+
+- **Project Manager (One of the team members.):** Has the fun job of overseeing the whole shebang, ensuring we don't fall behind our wildly optimistic timelines.
+- **Game Developers (One of the team members.):** Those magicians who sprinkle some code dust, implement mysterious tracking tools, and wave their coding wand to make post-evaluation magic changes.
+- **Data Analyst (One of the team members):** Digs deep into the avalanche of data, seeking the nuggets of wisdom and then, in a grand ceremony, presents the treasures (findings).
+- **UX/UI Team (One of the team members.):** Fixes the "oh-so-obvious" interface and navigation hiccups that mere mortals might overlook.
+- **Equal Contribution :** We hold regular team meetings, to make sure everyone's working at the same pace.
 
 ## Evaluation Report
 
