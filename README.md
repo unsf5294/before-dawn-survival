@@ -67,11 +67,11 @@ placeholder for it [here](GDD.md).
 
 ### Responsibilities:
 
-- **Project Manager:** Oversee the entire evaluation process, ensuring timelines are met.
-- **Game Developers:** Implement tracking tools in the game and make necessary changes post-evaluation.
-- **Data Analyst:** Analyze the gathered data and present findings.
-- **UX/UI Team:** Address any interface or navigation issues identified.
-- **Equal Contribution:** Conduct regular team meetings to ensure everyone is on track and contributing equally.
+- **Project Manager (One of the team members.):** Has the fun job of overseeing the whole shebang, ensuring we don't fall behind our wildly optimistic timelines.
+- **Game Developers (One of the team members.):** Those magicians who sprinkle some code dust, implement mysterious tracking tools, and wave their coding wand to make post-evaluation magic changes.
+- **Data Analyst (One of the team members):** Digs deep into the avalanche of data, seeking the nuggets of wisdom and then, in a grand ceremony, presents the treasures (findings).
+- **UX/UI Team (One of the team members.):** Fixes the "oh-so-obvious" interface and navigation hiccups that mere mortals might overlook.
+- **Equal Contribution :** We hold regular team meetings, to make sure everyone's working at the same pace.
 
 ## Evaluation Report
 
