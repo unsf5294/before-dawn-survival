@@ -14,10 +14,19 @@ public class MonsterMovement : MonoBehaviour
     private Vector3 currentMoveDirection;
 
     private bool hasCollided = false;
+    private bool isAttacking = false;
+
+    private void Start()
+    {
+        if (!player)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+    }
 
     private void Update()
     {
-        if (Vector3.Distance(player.position, transform.position) <= trackRange)
+        if (Vector3.Distance(player.position, transform.position) <= trackRange && !hasCollided)
         {
             MoveTowardsPlayer();
         }
@@ -36,7 +45,7 @@ public class MonsterMovement : MonoBehaviour
     void MoveTowardsPlayer()
     {
         // Tracking position
-        Vector3 targetPosition = new Vector3(player.position.x, player.position.y + 1, player.position.z);
+        Vector3 targetPosition = new Vector3(player.position.x, player.position.y, player.position.z);
         Vector3 directionToPlayer = (targetPosition - transform.position).normalized;
         transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
 
@@ -53,6 +62,9 @@ public class MonsterMovement : MonoBehaviour
             currentMoveDirection = ChooseRandomDirection();
         }
         transform.position += currentMoveDirection * moveSpeed * Time.deltaTime;
+
+        Quaternion lookRotation = Quaternion.LookRotation(currentMoveDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
     }
 
     Vector3 ChooseRandomDirection()

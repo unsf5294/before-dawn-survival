@@ -24018,7 +24018,7 @@ GameObject:
   - component: {fileID: 5443920}
   m_Layer: 0
   m_Name: troll_02_01_Mecanim
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
