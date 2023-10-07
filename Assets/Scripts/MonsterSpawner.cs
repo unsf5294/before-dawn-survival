@@ -1,37 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject monsterPrefab; 
-    [SerializeField] private Transform player; 
-    [SerializeField] private float spawnInterval = 10.0f; 
-    private float spawnRadius = 10.0f; 
+    public GameObject monsterPrefab; // The monster prefab to spawn
+    [SerializeField] private Transform player;
+    [SerializeField] private float initialDelay = 30f; // Time before first spawn
+    [SerializeField] private float firstSpawnRadiusMin = 30f;
+    [SerializeField] private float firstSpawnRadiusMax = 50f;
+    [SerializeField] private float firstSpawnInterval = 15f;
+    [SerializeField] private float secondSpawnRadiusMin = 15f;
+    [SerializeField] private float secondSpawnRadiusMax = 30f;
+    [SerializeField] private float secondSpawnInterval = 10f;
 
     private void Start()
     {
-        
-        InvokeRepeating("SpawnMonster", 0f, spawnInterval);
+        StartCoroutine(SpawnRoutine());
     }
 
-    void SpawnMonster()
+    private IEnumerator SpawnRoutine()
     {
-        if (monsterPrefab && player)
+        yield return new WaitForSeconds(initialDelay);
+        float startTime = Time.time;
+
+        // Initial Spawn Behavior
+        while (Time.time - startTime < 120f) // Continue this for 2 minutes
         {
-
-            Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
-            randomOffset.y = 0; // Keep them at the same vertical level
-            Vector3 spawnPosition = transform.position + randomOffset;
-
-            GameObject spawnedMonster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
-
-
-            MonsterMovement monsterMovement = spawnedMonster.GetComponent<MonsterMovement>();
-            if (monsterMovement)
-            {
-                monsterMovement.SetPlayer(player);
-            }
+            SpawnMonster(firstSpawnRadiusMin, firstSpawnRadiusMax);
+            yield return new WaitForSeconds(firstSpawnInterval);
         }
+
+        // After 2 minutes change to the new spawn behavior
+        while (true)
+        {
+            SpawnMonster(secondSpawnRadiusMin, secondSpawnRadiusMax);
+            yield return new WaitForSeconds(secondSpawnInterval);
+        }
+    }
+
+    private void SpawnMonster(float minRadius, float maxRadius)
+    {
+        Vector3 spawnPosition = player.position + (Random.onUnitSphere * Random.Range(minRadius, maxRadius));
+        spawnPosition.y = 0; // Assuming you want to spawn on the ground level
+
+        Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
     }
 }

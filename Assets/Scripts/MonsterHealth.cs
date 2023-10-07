@@ -3,6 +3,8 @@ using UnityEngine;
 public class MonsterHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int playerHealing = 10;
+
     private int currentHealth;
 
     private void Start()
@@ -26,6 +28,12 @@ public class MonsterHealth : MonoBehaviour
 
     private void Die()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.AddHealth(playerHealing);
+        }
         Debug.Log("Monster has died!");
         Destroy(this.gameObject);
     }

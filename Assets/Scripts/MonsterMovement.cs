@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
@@ -12,12 +13,14 @@ public class MonsterMovement : MonoBehaviour
     private float lastDirectionChangeTime = 0f;
     private float directionChangeInterval = 2f;
     private Vector3 currentMoveDirection;
-
+    private Animator animator;
     private bool hasCollided = false;
     private bool isAttacking = false;
+   
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         if (!player)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -26,15 +29,17 @@ public class MonsterMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(player.position, transform.position) <= trackRange && !hasCollided)
+        if (!hasCollided)
         {
-            MoveTowardsPlayer();
+            if (Vector3.Distance(player.position, transform.position) <= trackRange)
+            {
+                MoveTowardsPlayer();
+            }
+            else
+            {
+                RandomMovement();
+            }
         }
-        else
-        {
-            RandomMovement();
-        }
-
     }
 
     public void SetPlayer(Transform playerTransform)
@@ -80,42 +85,53 @@ public class MonsterMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+private void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.CompareTag("Player"))
     {
-        if (collision.gameObject.CompareTag("Player"))
+        hasCollided = true;
+        if (!isAttacking)
         {
-            hasCollided = true;
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        // Check if the collided
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            hasCollided = true;
-            
-            // Push monster away
-
-
-            if (Time.time - lastAttackTime >= attackCooldown)
-            {
-                // Get the player health script and deal damage
-                PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-                if (playerHealth)
-                {
-                    playerHealth.TakeDamage(damage);
-                    lastAttackTime = Time.time; // Update the last attack time
-                }
-            }
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            hasCollided = false;
+            StartCoroutine(HandleAttack(collision));
         }
     }
 }
+
+private void OnCollisionExit(Collision collision)
+{
+    if (collision.gameObject.CompareTag("Player"))
+    {
+        hasCollided = false;
+        StopCoroutine(HandleAttack(collision)); // Stop the attack sequence
+        isAttacking = false;
+    }
+}
+
+IEnumerator HandleAttack(Collision collision)
+{
+    while (hasCollided) // Keep attacking as long as there's a collision
+    {
+        isAttacking = true;
+
+        if (Time.time - lastAttackTime >= attackCooldown)
+        {
+            animator.SetBool("isAttack", true);
+            yield return new WaitForSeconds(0.2f);
+
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth)
+            {
+                playerHealth.TakeDamage(damage);
+            }
+            
+            yield return new WaitForSeconds(0.2f);
+            animator.SetBool("isAttack", false);
+
+            lastAttackTime = Time.time; 
+        }
+        yield return null; // Wait for next frame
+    }
+    isAttacking = false;
+}
+}
+

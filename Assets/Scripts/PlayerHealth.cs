@@ -35,12 +35,19 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        Debug.Log("Lost 1 health point. Current HP: " + currentHealth);
+        Debug.Log("Lost health: " + damage + ". Current HP: " + currentHealth);
 
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    public void AddHealth(int healthAmount)
+    {
+        currentHealth += healthAmount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        Debug.Log("Gained health: " + healthAmount + ". Current HP: " + currentHealth);
     }
 
     private void Die()
