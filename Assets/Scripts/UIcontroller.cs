@@ -56,9 +56,10 @@ public class UIManager : MonoBehaviour
     IEnumerator ShowAndHideInfoText()
     {
         string[] messages = {
-            "press 'j' 'k' to attack",
-            "kill monsters to heal",
-            "find artifacts to regain faith"
+            "press 'W' 'A' 'S' 'D' to move",
+            "press 'J' 'K' to attack",
+            "kill MONSTERS to heal",
+            "find ARTIFACTS to regain faith"
         };
 
         foreach (string message in messages)
@@ -71,8 +72,8 @@ public class UIManager : MonoBehaviour
 
             infoText.enabled = false;
 
-            // If you want a gap between hiding one message and showing the next, uncomment the line below:
-            // yield return new WaitForSeconds(1f);
+            // gap between hiding one message and showing the next
+            yield return new WaitForSeconds(1f);
         }
     }
 }
