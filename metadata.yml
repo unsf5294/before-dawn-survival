@@ -8,7 +8,7 @@ RepoURL: https://github.com/COMP30019/project-2-open-heimer-mid
 # 2. Since you are working in the same team for project 2, you should copy the
 #    below keys/values *verbatim* from your project 1 metadata.yml -- do not
 #    change them unless you have permission from the teaching team.
-TeamName: <open heimer mid>
+TeamName: open heimer mid
 TeamMembers:
   - Name: Yuecheng Wang
     Email: yuechengw@student.unimelb.edu.au
