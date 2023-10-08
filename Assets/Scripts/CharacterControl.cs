@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 2.5f;
+    [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private int attackDamage = 40;
     [SerializeField] private float attackRange = 5.0f; 
     [SerializeField] private float coneAngle = 45.0f;
@@ -38,6 +38,11 @@ public class CharacterControl : MonoBehaviour
 
         // Adjust move direction relative to camera orientation
         Vector3 moveDirection = vertical * camFwd + horizontal * camRight;
+
+        if (moveDirection.magnitude > 1.0f)
+        {
+            moveDirection = moveDirection.normalized;
+        }
 
         if (moveDirection.magnitude > 0f)
         {
