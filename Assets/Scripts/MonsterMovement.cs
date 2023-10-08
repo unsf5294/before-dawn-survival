@@ -29,7 +29,7 @@ public class MonsterMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!hasCollided)
+        if (!hasCollided & player)
         {
             if (Vector3.Distance(player.position, transform.position) <= trackRange)
             {

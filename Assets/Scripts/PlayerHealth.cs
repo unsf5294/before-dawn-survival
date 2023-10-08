@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
+    [SerializeField] private UnityEvent onDeath;
     private int currentHealth;
 
     public int CurrentHealth
@@ -14,6 +16,11 @@ public class PlayerHealth : MonoBehaviour
     public int MaxHealth
     {
         get { return maxHealth; }
+    }
+
+    public void setHealth(int health)
+    {
+        currentHealth = health;
     }
 
     private void Start()
@@ -34,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, -1, maxHealth);
         Debug.Log("Lost health: " + damage + ". Current HP: " + currentHealth);
 
         if (currentHealth <= 0)
@@ -53,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died!");
+        this.onDeath.Invoke();
         Destroy(this.gameObject);
     }
 }

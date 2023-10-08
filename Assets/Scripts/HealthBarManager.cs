@@ -27,7 +27,7 @@ public class HealthBarManager : MonoBehaviour
         healthSlider.value = playerHealth.CurrentHealth;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (playerHealth != null)
         {

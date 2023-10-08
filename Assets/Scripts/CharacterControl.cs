@@ -1,13 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterControl : MonoBehaviour
 {
+    [SerializeField] private Camera playerCamera;
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private int attackDamage = 40;
     [SerializeField] private float attackRange = 5.0f; 
     [SerializeField] private float coneAngle = 45.0f;
     [SerializeField] private float RotationSpeed = 0.1f;
+    [SerializeField] private UnityEvent Ability1;
+    [SerializeField] private UnityEvent Ability2;
+    [SerializeField] private UnityEvent Ability3;
+    [SerializeField] private float AbilityCooldown = 5;
+    private float CurrentCD;
     private Animator animator;
     private bool isAttacking = false;
     private float attackAnimationDuration; 
@@ -23,6 +30,7 @@ public class CharacterControl : MonoBehaviour
         HandleAttack();
         HandleShieldBash();
         HandleMovement();
+        HandleAbility();
     }
 
     void HandleMovement()
@@ -78,34 +86,35 @@ public class CharacterControl : MonoBehaviour
             }
         }
     }
-void HandleAttack()
-{
-    if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
+
+    void HandleAttack()
     {
-        Debug.Log("Attack triggered: " + currentAttack);
-        animator.SetBool("IsMoving", false);
-        isAttacking = true;
+        if ((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && !isAttacking)
+        {
+            Debug.Log("Attack triggered: " + currentAttack);
+            animator.SetBool("IsMoving", false);
+            isAttacking = true;
 
-        PerformAttack();
+            PerformAttack();
 
-        if (currentAttack == 1)
-        {
-            animator.SetBool("Attack1", true);
-            currentAttack++;
+            if (currentAttack == 1)
+            {
+                animator.SetBool("Attack1", true);
+                currentAttack++;
+            }
+            else if (currentAttack == 2)
+            {
+                animator.SetBool("Attack2", true);
+                currentAttack++;
+            }
+            else if (currentAttack == 3)
+            {
+                animator.SetBool("Attack3", true);
+                currentAttack = 1;  // Reset
+            }
+            StartCoroutine(ResetAttackAnimation());
         }
-        else if (currentAttack == 2)
-        {
-            animator.SetBool("Attack2", true);
-            currentAttack++;
-        }
-        else if (currentAttack == 3)
-        {
-            animator.SetBool("Attack3", true);
-            currentAttack = 1;  // Reset
-        }
-        StartCoroutine(ResetAttackAnimation());
     }
-}
 
 
     IEnumerator ResetAttackAnimation()
@@ -127,7 +136,7 @@ void HandleAttack()
 
     void HandleShieldBash()
     {
-        if (Input.GetKeyDown(KeyCode.K) && !isAttacking)
+        if ((Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.Mouse1)) && !isAttacking)
         {
             isAttacking = true;
             PerformAttack();
@@ -143,5 +152,21 @@ void HandleAttack()
         yield return new WaitForSeconds(shieldBashDuration);
         animator.SetBool("ShieldBash", false);
         isAttacking = false;
+    }
+
+    void HandleAbility()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && CurrentCD == 0)
+        {
+            AbilityCooldown = 5;
+            StartCoroutine(Cooldown());
+            Ability1.Invoke();
+        }
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(AbilityCooldown);
+        AbilityCooldown = 0;
     }
 }

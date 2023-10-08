@@ -1,20 +1,28 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 
 public class MonsterSpawner : MonoBehaviour
 {
     public GameObject monsterPrefab; // The monster prefab to spawn
+    private List<GameObject> monsters = new List<GameObject>();
+    [SerializeField] private GameObject monsterSpawner; // Parent object to all spawned enemies
     [SerializeField] private Transform player;
     [SerializeField] private float initialDelay = 30f; // Time before first spawn
-    [SerializeField] private float firstSpawnRadiusMin = 30f;
-    [SerializeField] private float firstSpawnRadiusMax = 50f;
-    [SerializeField] private float firstSpawnInterval = 15f;
-    [SerializeField] private float secondSpawnRadiusMin = 15f;
-    [SerializeField] private float secondSpawnRadiusMax = 30f;
-    [SerializeField] private float secondSpawnInterval = 10f;
+    [SerializeField] private float SpawnRadiusMin = 30f;
+    [SerializeField] private float SpawnRadiusMax = 50f;
+    [SerializeField] private float SpawnInterval = 15f;
 
     private void Start()
     {
+        //Get each child in parent and add to list
+        foreach (Transform monster in monsterSpawner.transform)
+        {
+            monsters.Add(monster.gameObject);
+        }
+
         StartCoroutine(SpawnRoutine());
     }
 
@@ -23,18 +31,11 @@ public class MonsterSpawner : MonoBehaviour
         yield return new WaitForSeconds(initialDelay);
         float startTime = Time.time;
 
-        // Initial Spawn Behavior
-        while (Time.time - startTime < 120f) // Continue this for 2 minutes
-        {
-            SpawnMonster(firstSpawnRadiusMin, firstSpawnRadiusMax);
-            yield return new WaitForSeconds(firstSpawnInterval);
-        }
-
-        // After 2 minutes change to the new spawn behavior
+        //Spawn one enemy per interval
         while (true)
         {
-            SpawnMonster(secondSpawnRadiusMin, secondSpawnRadiusMax);
-            yield return new WaitForSeconds(secondSpawnInterval);
+            SpawnMonster(SpawnRadiusMin, SpawnRadiusMax);
+            yield return new WaitForSeconds(SpawnInterval);
         }
     }
 
@@ -43,6 +44,24 @@ public class MonsterSpawner : MonoBehaviour
         Vector3 spawnPosition = player.position + (Random.onUnitSphere * Random.Range(minRadius, maxRadius));
         spawnPosition.y = 0; // Assuming you want to spawn on the ground level
 
-        Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
+        GameObject newMonster = (GameObject) Instantiate(monsterPrefab, spawnPosition, Quaternion.identity, monsterSpawner.transform);
+    }
+
+    public void DeactivateMonsters()
+    {
+        foreach (GameObject monster in monsters)
+        {
+            monster.SetActive(false);
+        }
+    }
+
+    public void setSpawnInterval(float spawnInterval)
+    {
+        SpawnInterval = spawnInterval;
+    }
+
+    public float getSpawnInterval()
+    {
+        return SpawnInterval;
     }
 }

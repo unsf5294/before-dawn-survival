@@ -6,51 +6,14 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public Button startButton;
-    public Button settingButton;
-    public Canvas menuUI;
     public Canvas combatUI;
     public TMP_Text infoText;
 
-    private bool hasShownInfoText = false;  
-
     private void Start()
     {
-        menuUI.enabled = true;
-        combatUI.enabled = false;
-        infoText.enabled = false;  
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            StartGame();
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            OpenSettings();
-        }
-    }
-
-    public void StartGame()
-    {
-        menuUI.enabled = false;
         combatUI.enabled = true;
-
-        if (!hasShownInfoText)
-        {
-            StartCoroutine(ShowAndHideInfoText());
-            hasShownInfoText = true;  
-        }
-
-        //SceneManager.LoadScene("StartScene");
-    }
-
-    public void OpenSettings()
-    {
-        // SceneManager.LoadScene("SettingScene");
+        infoText.enabled = true;
+        StartCoroutine(ShowAndHideInfoText());
     }
 
     IEnumerator ShowAndHideInfoText()
@@ -68,7 +31,7 @@ public class UIManager : MonoBehaviour
             infoText.enabled = true;
 
             // Wait for 5 seconds
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
 
             infoText.enabled = false;
 

@@ -23,7 +23,11 @@ public class CameraController : MonoBehaviour
         HandleCameraRotation();
 
         // After rotating, adjust the position to maintain the offset
-        transform.position = Player.position + offset;
+        if (Player)
+        {
+            transform.position = Player.position + offset;
+        }
+        
     }
 
     private void HandleCameraRotation()

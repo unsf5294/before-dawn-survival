@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class SkillIconFade : MonoBehaviour
 {
     public Image skillIcon;  // 
-    public KeyCode activationKey = KeyCode.J;
-    public float fadeDuration = 2.0f; // 
+    public KeyCode activationKey = KeyCode.Alpha1;
+    public float fadeDuration = 5.0f; // 
     private Color originalColor;
 
     private void Start()
