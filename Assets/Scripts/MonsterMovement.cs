@@ -16,6 +16,7 @@ public class MonsterMovement : MonoBehaviour
     private Animator animator;
     private bool hasCollided = false;
     private bool isAttacking = false;
+    private PlayerHealth playerHealth;
    
 
     private void Start()
@@ -24,6 +25,7 @@ public class MonsterMovement : MonoBehaviour
         if (!player)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
+            playerHealth = player.GetComponent<PlayerHealth>();
         }
     }
 
@@ -39,6 +41,11 @@ public class MonsterMovement : MonoBehaviour
             {
                 RandomMovement();
             }
+        }
+
+        if (hasCollided && !isAttacking) 
+        {
+            HandleAttack();
         }
     }
 
@@ -90,45 +97,42 @@ private void OnCollisionEnter(Collision collision)
     if (collision.gameObject.CompareTag("Player"))
     {
         hasCollided = true;
-        if (!isAttacking)
-        {
-            StartCoroutine(HandleAttack(collision));
-        }
     }
 }
+
 
 private void OnCollisionExit(Collision collision)
 {
     if (collision.gameObject.CompareTag("Player"))
     {
         hasCollided = false;
-        StopCoroutine(HandleAttack(collision)); // Stop the attack sequence
-        isAttacking = false;
     }
 }
 
-IEnumerator HandleAttack(Collision collision)
+private void HandleAttack()
 {
-    while (hasCollided) // Keep attacking as long as there's a collision
+
+    isAttacking = true;
+
+    animator.SetBool("isAttack", true);
+
+    StartCoroutine(ResetAttackAnimation());
+    Debug.Log(isAttacking);
+    if (playerHealth)
     {
-        isAttacking = true;
+        playerHealth.TakeDamage(damage);
+    }   
+    lastAttackTime = Time.time;
 
-        if (Time.time - lastAttackTime >= attackCooldown)
-        {
-            animator.SetBool("isAttack", true);            
-            yield return new WaitForSeconds(0.2f);
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth)
-            {
-                playerHealth.TakeDamage(damage);
-            }
-            animator.SetBool("isAttack", false);
+}
 
-            lastAttackTime = Time.time; 
-        }
-        yield return null; // Wait for next frame
-    }
+IEnumerator ResetAttackAnimation()
+{
+    yield return new WaitForSeconds(attackCooldown);
+    animator.SetBool("isAttack", false);
     isAttacking = false;
 }
+
+
 }
 
