@@ -24014,7 +24014,6 @@ GameObject:
   m_Component:
   - component: {fileID: 443822}
   - component: {fileID: 9543920}
-  - component: {fileID: 13543920}
   - component: {fileID: 5443920}
   - component: {fileID: 4254974655528377023}
   - component: {fileID: 8517494340853622498}
@@ -24070,27 +24069,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &13543920
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143816}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 10, z: -1.2071486}
 --- !u!54 &5443920
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24130,8 +24108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fce729578aae04f906fea822eaea60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  playerHealing: 10
+  maxHealth: 500
+  playerHealing: 50
 --- !u!114 &8517494340853622498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24145,9 +24123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 1
-  damage: 5
-  attackCooldown: 2
+  moveSpeed: 2
+  damage: 20
+  attackCooldown: 1
   trackRange: 10
 --- !u!65 &3212356657862266986
 BoxCollider:
@@ -24165,11 +24143,11 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 15, y: 30, z: 12}
+  m_Center: {x: 0, y: 15, z: 0}
 --- !u!135 &4808578457510581765
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24185,12 +24163,12 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 25
+  m_Center: {x: 0, y: 8, z: 0}
 --- !u!1 &143818
 GameObject:
   m_ObjectHideFlags: 0

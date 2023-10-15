@@ -66,7 +66,7 @@ public class MonsterMovement : MonoBehaviour
             lastDirectionChangeTime = Time.time;
             currentMoveDirection = ChooseRandomDirection();
         }
-        transform.position += currentMoveDirection * moveSpeed * Time.deltaTime;
+        transform.position += currentMoveDirection * (moveSpeed / 2) * Time.deltaTime;
 
         Quaternion lookRotation = Quaternion.LookRotation(currentMoveDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
@@ -115,16 +115,13 @@ IEnumerator HandleAttack(Collision collision)
 
         if (Time.time - lastAttackTime >= attackCooldown)
         {
-            animator.SetBool("isAttack", true);
-            yield return new WaitForSeconds(0.2f);
+            animator.SetBool("isAttack", true);            
 
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth)
             {
                 playerHealth.TakeDamage(damage);
             }
-            
-            yield return new WaitForSeconds(0.2f);
             animator.SetBool("isAttack", false);
 
             lastAttackTime = Time.time; 
