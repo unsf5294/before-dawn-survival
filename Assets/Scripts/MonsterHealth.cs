@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterHealth : MonoBehaviour
@@ -18,12 +20,19 @@ public class MonsterHealth : MonoBehaviour
 
         // No negative
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        StartCoroutine(PlaySound());
         Debug.Log("Monster took damage : " + damage + "HP left : " + currentHealth);
 
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    IEnumerator PlaySound()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<AudioSource>().Play();
     }
 
     private void Die()

@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Heal : MonoBehaviour
+[CreateAssetMenu]
+public class Heal : AbilityClient
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Activate(GameObject player)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Activate(player);
+        player.GetComponent<PlayerHealth>().AddHealth(10);
     }
 }

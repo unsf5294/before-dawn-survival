@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class CharacterControl : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private int attackDamage = 40;
@@ -13,12 +17,15 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private UnityEvent Ability1;
     [SerializeField] private UnityEvent Ability2;
     [SerializeField] private UnityEvent Ability3;
-    [SerializeField] private float AbilityCooldown = 10;
+    [SerializeField] private float Ability1Cooldown = 10;
+    [SerializeField] private float Ability2Cooldown = 20;
+    [SerializeField] private float Ability3Cooldown = 12;
     [SerializeField] private SkillAvailabilityUI skillUI;
+    public GameObject enemyManager;
 
     private enum AbilityType { None, Ability1, Ability2, Ability3 }
     private bool[] hasAbility = new bool[4];  // Index 0 is unused for simplicity
-    // private bool[] hasAbility = new bool[4] { true, true, true, true }; // only for debug
+    //private bool[] hasAbility = new bool[4] { true, true, true, true }; // only for debug
 
     private int baseAttackDamage;
     private float baseMoveSpeed;
@@ -78,6 +85,7 @@ public class CharacterControl : MonoBehaviour
 
     private void PerformAttack()
     {
+        StartCoroutine(PlaySound());
         // Get all monsters
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
 
@@ -96,6 +104,12 @@ public class CharacterControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator PlaySound()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<AudioSource>().Play();
     }
 
     void HandleAttack()
@@ -190,29 +204,45 @@ public class CharacterControl : MonoBehaviour
 
     void HandleAbility()
     {
-        if (CurrentCD > 0) return;  // If cooldown is still active, return
-
-        if (Input.GetKeyDown(KeyCode.Alpha1) && hasAbility[(int)AbilityType.Ability1])
+        if (Ability1Cooldown > 0 && Input.GetKeyDown(KeyCode.Alpha1) && hasAbility[(int)AbilityType.Ability1])
         {
             // Ability 1 logic 
             Ability1.Invoke();
-            StartCoroutine(Cooldown());
+            StartCoroutine(Cooldown(Ability1Cooldown));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && hasAbility[(int)AbilityType.Ability2])
+        else if (Ability2Cooldown > 0 &&  Input.GetKeyDown(KeyCode.Alpha2) && hasAbility[(int)AbilityType.Ability2])
         {
             // Ability 2 logic
-            StartCoroutine(BoostAttackDamage());
+            pushEnemies();
             Ability2.Invoke();
-            StartCoroutine(Cooldown());
+            StartCoroutine(Cooldown(Ability2Cooldown));
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && hasAbility[(int)AbilityType.Ability3])
+        else if  (Ability3Cooldown > 0 && Input.GetKeyDown(KeyCode.Alpha3) && hasAbility[(int)AbilityType.Ability3])
         {
             // Ability 3 logic
+            StartCoroutine(BoostAttackDamage());
             StartCoroutine(BoostMoveSpeed());
             Ability3.Invoke();
-            StartCoroutine(Cooldown());
+            StartCoroutine(Cooldown(Ability3Cooldown));
         }
     }
+
+    void pushEnemies()
+    {
+        GameObject enemy;
+        for (int i=0; i < enemyManager.transform.childCount; i++)
+        {
+            enemy = enemyManager.transform.GetChild(i).gameObject;
+            var heading = enemy.transform.position - player.transform.position;
+            var distance = heading.magnitude;
+            var normalVec = heading / distance;
+            if (distance <= 10)
+            {
+                StartCoroutine(enemy.GetComponent<MonsterMovement>().pushTo(normalVec * 3));
+            }
+        }
+    }
+    
 
     IEnumerator BoostAttackDamage()
     {
@@ -228,7 +258,7 @@ public class CharacterControl : MonoBehaviour
         moveSpeed = baseMoveSpeed;  // Restore the original move speed
     }
 
-    IEnumerator Cooldown()
+    IEnumerator Cooldown(float AbilityCooldown)
     {
         yield return new WaitForSeconds(AbilityCooldown);
         AbilityCooldown = 0;

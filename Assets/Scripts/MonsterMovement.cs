@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class MonsterMovement : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private float moveSpeed = 1.0f;
+    [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private int damage = 5;
     [SerializeField] private float attackCooldown = 2.0f;
     [SerializeField] private float trackRange = 10.0f; // Range within which monster starts tracking the player
@@ -17,10 +18,12 @@ public class MonsterMovement : MonoBehaviour
     private bool hasCollided = false;
     private bool isAttacking = false;
     private PlayerHealth playerHealth;
+    private bool inactive;
    
 
     private void Start()
     {
+        inactive = false;
         animator = GetComponent<Animator>();
         if (!player)
         {
@@ -31,22 +34,40 @@ public class MonsterMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!hasCollided & player)
+        if (!inactive)
         {
-            if (Vector3.Distance(player.position, transform.position) <= trackRange)
+             if (!hasCollided & player)
             {
-                MoveTowardsPlayer();
+                if (Vector3.Distance(player.position, transform.position) <= trackRange)
+                {
+                    MoveTowardsPlayer();
+                }
+                else
+                {
+                    RandomMovement();
+                }
             }
-            else
-            {
-                RandomMovement();
-            }
-        }
 
-        if (hasCollided && !isAttacking) 
-        {
-            HandleAttack();
+            if (hasCollided && !isAttacking) 
+            {
+                HandleAttack();
+            }           
         }
+    }
+
+    public IEnumerator pushTo(Vector3 Destination)
+    {
+        Vector3 Origin = transform.position;
+        float totalMovementTime = 4f; //the amount of time you want the movement to take
+        float currentMovementTime = 0f;//The amount of time that has passed
+        inactive = true;
+        while (Vector3.Distance(transform.localPosition, Destination) > 0)
+        {
+            currentMovementTime += Time.deltaTime;
+            transform.localPosition = Vector3.Lerp(Origin, Destination, currentMovementTime / totalMovementTime);
+            yield return null;
+        }
+        inactive = false;
     }
 
     public void SetPlayer(Transform playerTransform)
