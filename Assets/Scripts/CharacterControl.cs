@@ -13,7 +13,15 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private UnityEvent Ability1;
     [SerializeField] private UnityEvent Ability2;
     [SerializeField] private UnityEvent Ability3;
-    [SerializeField] private float AbilityCooldown = 5;
+    [SerializeField] private float AbilityCooldown = 10;
+    [SerializeField] private SkillAvailabilityUI skillUI;
+
+    private enum AbilityType { None, Ability1, Ability2, Ability3 }
+    private bool[] hasAbility = new bool[4];  // Index 0 is unused for simplicity
+    // private bool[] hasAbility = new bool[4] { true, true, true, true }; // only for debug
+
+    private int baseAttackDamage;
+    private float baseMoveSpeed;
     private float CurrentCD;
     private Animator animator;
     private bool isAttacking = false;
@@ -23,6 +31,9 @@ public class CharacterControl : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        baseAttackDamage = attackDamage;
+        baseMoveSpeed = moveSpeed;
+        StartCoroutine(GrantAbilitiesOverTime());
     }
 
     void Update()
@@ -154,14 +165,66 @@ public class CharacterControl : MonoBehaviour
         isAttacking = false;
     }
 
+    IEnumerator GrantAbilitiesOverTime()
+    {
+        yield return new WaitForSeconds(5);  // Wait for 1 minute
+        GrantRandomAbility();
+        yield return new WaitForSeconds(5);  // Wait for another minute
+        GrantRandomAbility();
+        yield return new WaitForSeconds(60);  // Wait for another minute
+        GrantRandomAbility();
+    }
+
+    void GrantRandomAbility()
+    {
+        AbilityType randomAbility;
+        do
+        {
+            randomAbility = (AbilityType)Random.Range(1, 4);  // Random ability between 1 to 3
+        } while (hasAbility[(int)randomAbility]);  // Ensure the ability is not already granted
+
+        hasAbility[(int)randomAbility] = true;
+        skillUI.SetSkillUnavailable((int)randomAbility, false);
+    }
+
     void HandleAbility()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && CurrentCD == 0)
+        if (CurrentCD > 0) return;  // If cooldown is still active, return
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && hasAbility[(int)AbilityType.Ability1])
         {
-            AbilityCooldown = 5;
-            StartCoroutine(Cooldown());
+            // Ability 1 logic 
             Ability1.Invoke();
+            StartCoroutine(Cooldown());
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && hasAbility[(int)AbilityType.Ability2])
+        {
+            // Ability 2 logic
+            StartCoroutine(BoostAttackDamage());
+            Ability2.Invoke();
+            StartCoroutine(Cooldown());
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && hasAbility[(int)AbilityType.Ability3])
+        {
+            // Ability 3 logic
+            StartCoroutine(BoostMoveSpeed());
+            Ability3.Invoke();
+            StartCoroutine(Cooldown());
+        }
+    }
+
+    IEnumerator BoostAttackDamage()
+    {
+        attackDamage *= 2;
+        yield return new WaitForSeconds(10);  // Wait for 10 seconds
+        attackDamage = baseAttackDamage;  // Restore the original attack damage
+    }
+
+    IEnumerator BoostMoveSpeed()
+    {
+        moveSpeed *= 1.5f;
+        yield return new WaitForSeconds(10);  // Wait for 10 seconds
+        moveSpeed = baseMoveSpeed;  // Restore the original move speed
     }
 
     IEnumerator Cooldown()
