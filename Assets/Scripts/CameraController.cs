@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform Player;
     [SerializeField] private Vector3 offset = new Vector3(0, 5, -5);
-    [SerializeField] private Boolean test = true;
     private float shakeDuration = 0;
     private float shakeIntensity = 0;
     private bool gradualShake = false;
