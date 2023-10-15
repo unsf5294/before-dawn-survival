@@ -116,7 +116,7 @@ IEnumerator HandleAttack(Collision collision)
         if (Time.time - lastAttackTime >= attackCooldown)
         {
             animator.SetBool("isAttack", true);            
-
+            yield return new WaitForSeconds(0.2f);
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth)
             {
