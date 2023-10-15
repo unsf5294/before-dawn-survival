@@ -167,9 +167,9 @@ public class CharacterControl : MonoBehaviour
 
     IEnumerator GrantAbilitiesOverTime()
     {
-        yield return new WaitForSeconds(10);  // Wait for 10s
+        yield return new WaitForSeconds(5);  // Wait for 1 minute
         GrantRandomAbility();
-        yield return new WaitForSeconds(30);  // Wait for another 30s
+        yield return new WaitForSeconds(5);  // Wait for another minute
         GrantRandomAbility();
         yield return new WaitForSeconds(60);  // Wait for another minute
         GrantRandomAbility();
@@ -185,7 +185,6 @@ public class CharacterControl : MonoBehaviour
 
         hasAbility[(int)randomAbility] = true;
         skillUI.SetSkillUnavailable((int)randomAbility, false);
-        skillUI.ShowSkillNotification((int)randomAbility-1);
     }
 
     void HandleAbility()
