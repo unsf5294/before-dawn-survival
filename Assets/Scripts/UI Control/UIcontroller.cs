@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
             "press 'W' 'A' 'S' 'D' to move",
             "press 'J' 'K' to attack",
             "kill MONSTERS to heal",
-            "find ARTIFACTS to regain faith"
+            "use 'Q' 'E' to switch views"
         };
 
         foreach (string message in messages)
