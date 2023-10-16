@@ -13,6 +13,11 @@ public class SkillAvailabilityUI : MonoBehaviour
     [Header("Skill Notification")]
     [SerializeField] private GameObject[] skillNotifications;
 
+    [SerializeField] private Animator skillNotificationAnimator;
+    private const string PLAY_NOTIFICATION_TRIGGER = "PlaySkillNotification";
+
+
+
     private void Start()
     {
         foreach (GameObject notification in skillNotifications)
@@ -53,7 +58,7 @@ public class SkillAvailabilityUI : MonoBehaviour
     private IEnumerator HideNotificationAfterDelay(GameObject notification, float delay)
     {
         yield return new WaitForSeconds(delay);
-        notification.SetActive(false);
+        skillNotificationAnimator.SetTrigger(PLAY_NOTIFICATION_TRIGGER);
     }
 
 }
