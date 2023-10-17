@@ -7,13 +7,22 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform Player;
     [SerializeField] private Vector3 offset = new Vector3(0, 5, -5);
+    [SerializeField] private Vector3 startOffset = new Vector3(0, 15, -15); // initial state
+    [SerializeField] private float transitionDuration = 2.0f;
+    [SerializeField] private float initialDelay = 2.0f;
+
     private float shakeDuration = 0;
     private float shakeIntensity = 0;
     private bool gradualShake = false;
+    private bool transitionFinished = false; 
 
     private void Start()
     {
-        transform.position = Player.position + offset;
+        if (Player)
+        {
+            transform.position = Player.position + startOffset; 
+            StartCoroutine(TransitionCamera()); 
+        }
         FacePlayer();
     }
 
@@ -21,12 +30,39 @@ public class CameraController : MonoBehaviour
     {
         HandleCameraRotation();
 
-        // After rotating, adjust the position to maintain the offset
-        if (Player)
+        cameraShake();
+
+        if (transitionFinished && Player)
         {
             transform.position = Player.position + offset;
         }
-        
+    }
+
+    IEnumerator TransitionCamera()
+    {
+        if (Player == null)
+        {
+            Debug.LogError("Player transform is not set.");
+            yield break;
+        }
+
+        yield return new WaitForSeconds(initialDelay); // wait for initial 2s
+
+        float t = 0.0f;
+        Vector3 startingPos = Player.position + startOffset;
+        Vector3 finalPos = Player.position + offset;
+
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime / transitionDuration;  
+
+            transform.position = Vector3.Lerp(startingPos, finalPos, t);  
+            FacePlayer(); 
+
+            yield return null;  
+        }
+
+        transitionFinished = true; 
     }
 
     private void HandleCameraRotation()
