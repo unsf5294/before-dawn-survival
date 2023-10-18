@@ -12272,6 +12272,7 @@ MonoBehaviour:
   healthSlider: {fileID: 1313896306}
   playerHealth: {fileID: 1548609128}
   sliderRectTransform: {fileID: 2081026799}
+  sliderFillImage: {fileID: 76035007}
 --- !u!1 &1314035585
 GameObject:
   m_ObjectHideFlags: 0

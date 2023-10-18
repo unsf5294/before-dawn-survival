@@ -8,7 +8,10 @@ public class HealthBarManager : MonoBehaviour
     public Slider healthSlider;
     public PlayerHealth playerHealth; // Reference to the player's health script
     public RectTransform sliderRectTransform; // The RectTransform of the health slider
+    public Image sliderFillImage; 
 
+    private Color originalColor; 
+    private Color darkenedColor; 
     private float lastHealth; 
     private Vector3 initialPosition; 
 
@@ -32,6 +35,16 @@ public class HealthBarManager : MonoBehaviour
         lastHealth = playerHealth.CurrentHealth; // Initialize lastHealth at the start
 
         initialPosition = sliderRectTransform.localPosition; // Record the initial position at the start
+
+        if (sliderFillImage != null)
+        {
+            originalColor = sliderFillImage.color;
+            darkenedColor = new Color(
+                originalColor.r * 0.9f, 
+                originalColor.g * 0.9f, 
+                originalColor.b * 0.9f, 
+                originalColor.a * 0.7f); 
+        }
     }
 
     private void Update() // Consider using Update instead of LateUpdate for UI
@@ -55,16 +68,26 @@ public class HealthBarManager : MonoBehaviour
     {
         float elapsed = 0.0f;
 
+        if (sliderFillImage != null)
+        {
+            sliderFillImage.color = darkenedColor; 
+        }
+
         while (elapsed < duration)
         {
-            float x = initialPosition.x + Random.Range(-1f, 1f) * 2f; // Varying the x position slightly
-            float y = initialPosition.y + Random.Range(-1f, 1f) * 2f; // Varying the y position slightly
+            float x = initialPosition.x + Random.Range(-1f, 1f) * 1f; // Varying the x position slightly
+            float y = initialPosition.y + Random.Range(-1f, 1f) * 1f; // Varying the y position slightly
 
             sliderRectTransform.localPosition = new Vector3(x, y, initialPosition.z);
 
             elapsed += Time.deltaTime;
 
             yield return null; // wait until next frame
+        }
+
+        if (sliderFillImage != null)
+        {
+            sliderFillImage.color = originalColor; 
         }
 
         sliderRectTransform.localPosition = initialPosition; 
