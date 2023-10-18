@@ -12271,6 +12271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 1313896306}
   playerHealth: {fileID: 1548609128}
+  sliderRectTransform: {fileID: 2081026799}
 --- !u!1 &1314035585
 GameObject:
   m_ObjectHideFlags: 0
@@ -16959,6 +16960,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 4394186219309819}
   offset: {x: 0, y: 6, z: -5}
+  startOffset: {x: 0, y: 15, z: -15}
+  transitionDuration: 2
+  initialDelay: 2
 --- !u!1001 &1577278290
 PrefabInstance:
   m_ObjectHideFlags: 0

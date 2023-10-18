@@ -49,20 +49,20 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(initialDelay); // wait for initial 2s
 
         float t = 0.0f;
-        Vector3 startingPos = Player.position + startOffset;
-        Vector3 finalPos = Player.position + offset;
+        Vector3 startingPos = transform.position; // Current position of the camera
 
         while (t < 1.0f)
         {
-            t += Time.deltaTime / transitionDuration;  
+            t += Time.deltaTime / transitionDuration;
 
-            transform.position = Vector3.Lerp(startingPos, finalPos, t);  
-            FacePlayer(); 
+            Vector3 finalPos = Player.position + offset; 
+            transform.position = Vector3.Lerp(startingPos, finalPos, t); 
+            FacePlayer(); // Ensure the camera is facing the player
 
-            yield return null;  
+            yield return null; 
         }
 
-        transitionFinished = true; 
+        transitionFinished = true;
     }
 
     private void HandleCameraRotation()
