@@ -15,7 +15,10 @@ public class SkillAvailabilityUI : MonoBehaviour
 
     [SerializeField] private Animator skillNotificationAnimator;
     private const string PLAY_NOTIFICATION_TRIGGER = "PlaySkillNotification";
-
+    
+    [SerializeField] private float shakeAmount = 3f;
+    [SerializeField] private float shakeDuration = 0.75f;
+    [SerializeField] private float delayBeforeShake = 2.5f;
 
 
     private void Start()
@@ -45,8 +48,48 @@ public class SkillAvailabilityUI : MonoBehaviour
 
         if (targetSkill != null)
         {
-            targetSkill.color = isUnavailable ? new Color(1, 1, 1, 1) : new Color(1, 1, 1, 0);
+            if (!isUnavailable)
+            {
+                StartCoroutine(ShakeImage(targetSkill));
+            }
+            else
+            {
+                targetSkill.color = new Color(1, 1, 1, 1);
+            }
         }
+    }
+
+    private IEnumerator ShakeImage(Image targetImage)
+    {
+        Vector3 originalPosition = targetImage.rectTransform.localPosition;
+        Vector3 originalScale = targetImage.rectTransform.localScale; 
+        float elapsed = 0.0f;
+
+        Vector3 enlargedScale = originalScale * 1.1f; 
+
+        yield return new WaitForSeconds(delayBeforeShake);
+
+        targetImage.rectTransform.localScale = enlargedScale;
+
+        while (elapsed < shakeDuration)
+        {
+            float x = originalPosition.x + Random.Range(-1f, 1f) * shakeAmount;
+            float y = originalPosition.y + Random.Range(-1f, 1f) * shakeAmount;
+
+            targetImage.rectTransform.localPosition = new Vector3(x, y, originalPosition.z);
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.25f);
+
+
+        targetImage.rectTransform.localPosition = originalPosition;
+        targetImage.rectTransform.localScale = originalScale; 
+        targetImage.color = new Color(1, 1, 1, 0); 
+
+        Debug.Log("Shake ended."); 
     }
 
     public void ShowSkillNotification(int skillIndex)

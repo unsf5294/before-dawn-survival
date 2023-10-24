@@ -15484,6 +15484,9 @@ MonoBehaviour:
   - {fileID: 1651984039}
   - {fileID: 1991045304}
   skillNotificationAnimator: {fileID: 0}
+  shakeAmount: 3
+  shakeDuration: 0.75
+  delayBeforeShake: 2.5
 --- !u!1001 &1418592396
 PrefabInstance:
   m_ObjectHideFlags: 0
