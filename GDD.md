@@ -123,9 +123,20 @@ E -->|faith > 0 \n && 5 minutes have passed| G[Survives the darkness.]
 
 ### Controls and Mechanics :video_game:
 
-**Controls**:  We're aiming for this title to deliver a **punchy feel** resembling top-tier arcade fighting game (very ambitious :flushed:). With this in mind, the game should support both keyboard /gamepad inputs. For the keyboard setup, players can expect to navigate using the **WASD** keys and attack, combo, or deploy items/skills with JKL (tentatively). 
+**Controls**:  We're aiming for this title to deliver a **punchy feel** resembling top-tier arcade fighting game (very ambitious :flushed:). With this in mind, the game should support both keyboard /gamepad inputs. For the keyboard setup, players can expect to navigate using the **WASD** keys and attack, combo, or deploy items/skills with **JK** **123**(tentatively). The purpose of this design is to ensure that players can comfortably place both hands in the appropriate positions while using the keyboard. Additionally, the game allows players to use the **QE** keys to switch between different camera perspectives, ensuring that no game objects are hidden in blind spots. This design choice enhances the overall player experience, providing a more seamless and engaging gameplay.
 
 **Mechanics**: At its core, our game can be described as a roguelike combat survival game. Each foray into the game might place the player in diverse environments, thanks to our modular map designs. As gameplay progresses, players are offered the chance to adopt randomised special abilities or attribute boosts, ensuring every session feels fresh and unique, driving replayability. This gameplay mechanic is seamlessly woven into our game's lore: God bestows random divine gifts upon his faithful worshipper, aiding them in their battle against the Dark Lord.
+
+Due to time constraints, the final version of the game does not showcase a vast array of skills available for random selection (we have narrowed it down from five to three different types of skills). However, our code implementation is highly scalable, allowing for easy updates in future version releases.
+
+Our intention is for players to acquire three random skills as the game progresses, each originating from three distinct skill groups: 
+
+1. **Recovery Skills:** These skills restore the player's state.
+2. **Enhancement Buff Skills:** These skills boost various player stats.
+3. **Special Effects Skills:** These skills trigger unique effects, such as pushing enemies away.
+
+In the current version, these three skills are predetermined, but the order in which they are acquired is randomized, introducing a level of unpredictability and variety to each gameplay experience. This design ensures that players can enjoy a diverse range of strategies and outcomes, keeping the game fresh and engaging.
+
 
 [Back to Top :top:](#Back-to-Top)
 
@@ -133,7 +144,11 @@ E -->|faith > 0 \n && 5 minutes have passed| G[Survives the darkness.]
 
 ### User Interface :computer:
 
-**Menu**: We plan to adopt a **unconventional, yet simplistically-styled** game menu where the hero walks towards a divine artifacts on an altar. The player makes the decision to start their advanture by retrieving the divine artifact into their possession (Clicking on the propmt "Retrieve Artefact"). As the game commences, the camera will be pulled away from the altar and the darkness will take shape as the scene is darkening.
+**Menu**:Currently, players are presented with three options in the game:
+
+1. **Start Game:** This option takes the player directly into the game, allowing them to immediately begin playing.
+2. **Controls:** This section provides players with the opportunity to observe and learn the game’s controls and mechanics, ensuring they are familiar with how to play before starting.
+3. **Settings:** Here, players can adjust various aspects of the game, such as its difficulty level, to tailor the gameplay experience to their preferences.
 
 <figure>
   <img src="./Images/menu_ui.jpeg" </img>
@@ -141,6 +156,14 @@ E -->|faith > 0 \n && 5 minutes have passed| G[Survives the darkness.]
 </figure>
 
 **In-game**: It will most likely resembles an in-game interface of traditional arcade titles, showing infomation of player's "Faith", abilites and attributes they picked up.
+We have incorporated a variety of lively and dynamic effects into this part of the game to enhance the player’s experience:
+
+1. **Health Bar Vibration:** When the player’s health decreases, the health bar vibrates to visually emphasize the impact and create a sense of urgency.
+2. **Skill Description Displacement:** The descriptions for skills exhibit a subtle displacement effect, making them more noticeable and engaging for the player.
+3. **Combat UI Interface:** The battle UI interface is designed to appear only when the player enters the game and starts moving, ensuring a clean and uncluttered screen when it is not needed.
+
+These features contribute to a more immersive and interactive gaming experience, drawing the player into the world of the game and making each action and event feel more impactful.
+
 
 <figure>
   <img src="./Images/ingame_interface.jpeg" </img>
