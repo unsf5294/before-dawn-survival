@@ -19,10 +19,9 @@ public class UIManager : MonoBehaviour
     IEnumerator ShowAndHideInfoText()
     {
         string[] messages = {
-            "press 'W' 'A' 'S' 'D' to move",
-            "press 'J' 'K' to attack",
-            "kill MONSTERS to heal",
-            "use 'Q' 'E' to switch views"
+            "The Dawn soon breaks the night's embrace",
+            "DARKNESS makes its FINAL, defiant stage",
+            "SLAY the MONSTER to prove your faith's true gauge"
         };
 
         foreach (string message in messages)
