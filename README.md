@@ -79,21 +79,21 @@ placeholder for it [here](GDD.md).
 
 ## Evaluation Report
 
-In our recent game testing session, we invited a total of twelve participants to engage with our game. All participants were within our target demographic, aged between 20 and 26 years old. The group consisted of eight males and four females, and they were unaware of the game’s content prior to the session. This demographic is particularly significant for our game, as it aligns perfectly with our intended audience.
+In our recent game testing session, we invited a total of twelve participants to engage with our game. They provided us with an ample number of samples (the number of people for querying and one observational evaluation technique both exceeded 5) and **12 valid questionnaire results**. All participants were within our target demographic, aged between **20 and 26** years old. The group consisted of eight males and four females, and they were unaware of the game’s content prior to the session. This demographic is particularly significant for our game, as it aligns perfectly with our intended audience.
 
-We employed Cooperative Evaluation and Post-task Walkthroughs as our primary methods of observation during the game testing. This approach allowed us to interact with the participants throughout the gaming session, observing their behavior, and gathering real-time feedback. Following the gaming session, participants were asked to share their thoughts and complete a questionnaire, the details of which can be found in the provided PDF on our GitHub repository, named “Questionnaire_for_Game_Evaluation.pdf”.
+We employed Cooperative Evaluation and Post-task Walkthroughs as our primary methods of observation during the game testing. This approach allowed us to interact with the participants throughout the gaming session, observing their behavior, and gathering real-time feedback. Following the gaming session, participants were asked to share their thoughts and complete a questionnaire, the details of which can be found in the provided PDF on our GitHub repository, named `“Questionnaire_for_Game_Evaluation.pdf”`.
 
 From our analysis of the gathered data, we were able to draw several key conclusions:
 
 1. **Demographic Relevance**: Given that all participants fell within the 20-26 age range, and were students, we acknowledge that while the age range is narrow, it is representative of our target audience. This demographic relevance adds significant value to our findings.
 
-2. **Game Attraction**: Our game received an average rating of 7.58 out of 10. This score is indicative of a positive reception and suggests that our game holds a certain level of attraction to players.
+2. **Game Attraction**: Our game received an average rating of **7.58 out of 10**. This score is indicative of a positive reception and suggests that our game holds a certain level of attraction to players.
 
 3. **Positive Feedback**: Several aspects of the game were highlighted positively by the participants. Three of them particularly appreciated the background story and the thematic settings of the game, stating that the game did an excellent job of capturing these elements. Additionally, subtle effects in the UI, as well as the character models, were praised. Almost all subjects were 'POSITIVE' and above in their impression of the game, and a unanimously chosen 5 (Very Easy) for the clarity of the UI.
 
 4. **Areas for Improvement and Action Taken**: 
-    - **Lighting**: A significant portion of participants (10 out of 12) mentioned that the game’s lighting was too dim. In response to this feedback, we have increased the number of light sources and adjusted the overall brightness in the final version of the game.
-    - **Game Objectives**: Some participants (6 out of 12) expressed that the game’s objectives were not clear enough. To address this, we introduced a Timer feature, providing players with a clearer sense of direction and motivation to continue playing.
+    - **Lighting**: A significant portion of participants (**10 out of 12**) mentioned that the game’s lighting was too dim. In response to this feedback, we have increased the number of light sources and adjusted the overall brightness in the final version of the game.
+    - **Game Objectives**: Some participants (**6 out of 12**) expressed that the game’s objectives were not clear enough. To address this, we introduced a Timer feature, providing players with a clearer sense of direction and motivation to continue playing.
 
 In conclusion, the game testing session provided us with valuable insights into the player experience, highlighting areas of strength and opportunities for improvement. The adjustments made following the session reflect our commitment to creating a game that resonates with our target audience and offers an engaging and enjoyable experience.
 
