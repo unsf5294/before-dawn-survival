@@ -115,4 +115,21 @@ Specific details can be viewed in the commit history section on GitHub.
 
 ## References and External Resources
 
-We modified some open-source models available on the internet (URLs:), and for the implementation of certain specific functions, we may have referred to some YouTube tutorials (URLs: https://www.youtube.com/watch?v=br9YzpiBeIw, https://www.youtube.com/watch?v=cqNBA9Pslg8, https://www.youtube.com/watch?v=vApG8aYD5aI). We utilized a large language model (CHATGPT) for some translation work, and our implementation of some features might also have referred to the content of workshops 4, 7, and 8.
+We modified some open-source models available on the internet 
+(URLs: 
+character : https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/crusader-tank-101601,
+props : https://assetstore.unity.com/packages/3d/environments/fantasy/detailed-medieval-wells-props-177037,
+tree and grass : https://assetstore.unity.com/packages/3d/environments/sunny-village-lite-85199
+terrain texture pics : https://assetstore.unity.com/packages/2d/textures-materials/free-fantasy-terrain-textures-233640
+), 
+we also included some external audio for enhance game's immersion
+(URLs:
+background music : https://assetstore.unity.com/packages/audio/music/orchestral/fantasy-music-lite-72931,
+on hit sound effect : https://mixkit.co/free-sound-effects/sword/
+),
+and for the implementation of certain specific functions, we may have referred to some YouTube tutorials 
+(URLs: 
+https://www.youtube.com/watch?v=br9YzpiBeIw, 
+https://www.youtube.com/watch?v=cqNBA9Pslg8, 
+https://www.youtube.com/watch?v=vApG8aYD5aI). 
+We utilized a large language model (CHATGPT) for some translation work, and our implementation of some features might also have referred to the content of workshops 4, 7, and 8.
