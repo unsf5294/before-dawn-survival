@@ -25711,6 +25711,18 @@ PrefabInstance:
       value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
+      propertyPath: attackSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: 7645686f4d6a6224d9f147eec35f83c6, type: 3}
+    - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
+      propertyPath: attackSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: b1001bcbb87196b4f9f3001bfb0aa436, type: 3}
+    - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
+      propertyPath: attackSound3
+      value: 
+      objectReference: {fileID: 8300000, guid: 63168b022ce092840a57c38931d59c77, type: 3}
+    - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: enemyManager
       value: 
       objectReference: {fileID: 1522046584}

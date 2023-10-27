@@ -23,6 +23,11 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private SkillAvailabilityUI skillUI;
     public GameObject enemyManager;
 
+    public AudioClip attackSound1;
+    public AudioClip attackSound2;
+    public AudioClip attackSound3;
+    private AudioSource audioSource;
+
     private enum AbilityType { None, Ability1, Ability2, Ability3 }
     private bool[] hasAbility = new bool[4];  // Index 0 is unused for simplicity
     //private bool[] hasAbility = new bool[4] { true, true, true, true }; // only for debug
@@ -40,7 +45,9 @@ public class CharacterControl : MonoBehaviour
         animator = GetComponent<Animator>();
         baseAttackDamage = attackDamage;
         baseMoveSpeed = moveSpeed;
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(GrantAbilitiesOverTime());
+        
     }
 
     void Update()
@@ -109,7 +116,22 @@ public class CharacterControl : MonoBehaviour
     IEnumerator PlaySound()
     {
         yield return new WaitForSeconds(0.2f);
-        GetComponent<AudioSource>().Play();
+        int randomIndex = Random.Range(1, 4); // Generate a random number between 1 and 3
+        switch (randomIndex)
+        {
+            case 1:
+                audioSource.PlayOneShot(attackSound1);
+                break;
+            case 2:
+                audioSource.PlayOneShot(attackSound2);
+                break;
+            case 3:
+                audioSource.PlayOneShot(attackSound3);
+                break;
+            default:
+                Debug.LogError("Unexpected random index");
+                break;
+        }
     }
 
     void HandleAttack()
