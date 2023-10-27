@@ -6860,6 +6860,7 @@ GameObject:
   - component: {fileID: 772388042}
   - component: {fileID: 772388044}
   - component: {fileID: 772388043}
+  - component: {fileID: 772388045}
   m_Layer: 5
   m_Name: bloodUP
   m_TagString: Untagged
@@ -6924,6 +6925,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772388041}
   m_CullTransparentMesh: 1
+--- !u!114 &772388045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772388041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce550bbd6c18c704189ed3ad84eb4fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 1548609128}
+  bloodstainImage: {fileID: 772388043}
 --- !u!1 &785838623
 GameObject:
   m_ObjectHideFlags: 0
@@ -14759,7 +14774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillIcon: {fileID: 1382988264}
   activationKey: 106
-  fadeDuration: 2
+  fadeDuration: 1
 --- !u!95 &1382988267
 Animator:
   serializedVersion: 5

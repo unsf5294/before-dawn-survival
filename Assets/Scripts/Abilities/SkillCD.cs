@@ -32,7 +32,7 @@ public class SkillIconFade : MonoBehaviour
     {
         // Fade out
         float elapsed = 0f;
-        while (elapsed < fadeDuration / 2)
+        while (elapsed < fadeDuration * 0.1)
         {
             skillIcon.color = Color.Lerp(originalColor, new Color(originalColor.r, originalColor.g, originalColor.b, 0.25f), elapsed / (fadeDuration / 2));
             elapsed += Time.deltaTime;
@@ -44,7 +44,7 @@ public class SkillIconFade : MonoBehaviour
         elapsed = 0f;
 
         // Fade in
-        while (elapsed < fadeDuration / 2)
+        while (elapsed < fadeDuration * 0.9)
         {
             skillIcon.color = Color.Lerp(new Color(originalColor.r, originalColor.g, originalColor.b, 0.25f), originalColor, elapsed / (fadeDuration / 2));
             elapsed += Time.deltaTime;
