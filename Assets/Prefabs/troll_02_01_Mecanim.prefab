@@ -24110,6 +24110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 500
   playerHealing: 50
+  healingEffect: {fileID: 198297634847316230, guid: 49cf6972d1c9a7e4d8348f349bf08e74, type: 3}
 --- !u!114 &8517494340853622498
 MonoBehaviour:
   m_ObjectHideFlags: 0

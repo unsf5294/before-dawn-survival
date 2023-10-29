@@ -6,6 +6,7 @@ public class MonsterHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int playerHealing = 10;
+    [SerializeField] private ParticleSystem healingEffect;
 
     private int currentHealth;
 
@@ -21,11 +22,10 @@ public class MonsterHealth : MonoBehaviour
         // No negative
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         StartCoroutine(PlaySound());
-        Debug.Log("Monster took damage : " + damage + "HP left : " + currentHealth);
 
         if (currentHealth <= 0)
         {
-            Die();
+           Die();
         }
     }
 
@@ -37,13 +37,13 @@ public class MonsterHealth : MonoBehaviour
 
     private void Die()
     {
+        var particles = Instantiate(this.healingEffect);
+        particles.transform.position = transform.position;
+        
+        // heal after short duration to match the healing particle
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
-        {
-            playerHealth.AddHealth(playerHealing);
-        }
-        Debug.Log("Monster has died!");
+        playerHealth.AddHealthWithDelay(playerHealing, 2.5f);
         Destroy(this.gameObject);
     }
 }

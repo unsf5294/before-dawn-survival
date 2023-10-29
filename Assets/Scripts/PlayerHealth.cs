@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private UnityEvent onDeath;
+    [SerializeField] private ParticleSystem healReceiveEffect;
     private int currentHealth;
 
     public int CurrentHealth
@@ -54,7 +55,21 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth += healthAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        var particles = Instantiate(this.healReceiveEffect);
+        particles.transform.position = transform.position;
         Debug.Log("Gained health: " + healthAmount + ". Current HP: " + currentHealth);
+    }
+
+    // for effect after killing monster
+    public void AddHealthWithDelay(int healthAmount, float delay)
+    {
+        StartCoroutine(DelayedAddHealth(healthAmount, delay));
+    }
+
+    private IEnumerator DelayedAddHealth(int healthAmount, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        AddHealth(healthAmount);
     }
 
     private void Die()
