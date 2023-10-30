@@ -177,6 +177,7 @@ MonoBehaviour:
   intensityChangeRate: 0.5
   timeToHeal: 5
   healAmount: 15
+  healingEffect: {fileID: 198297634847316230, guid: 49cf6972d1c9a7e4d8348f349bf08e74, type: 3}
 --- !u!1 &29441646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 180470, guid: f4864ffb159f30048a3bdafeae646afb, type: 3}
@@ -11725,6 +11726,7 @@ MonoBehaviour:
   intensityChangeRate: 0.5
   timeToHeal: 15
   healAmount: 30
+  healingEffect: {fileID: 198297634847316230, guid: 49cf6972d1c9a7e4d8348f349bf08e74, type: 3}
 --- !u!4 &1106649036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4540708268219622, guid: 3340040610682b24c9c64dfd2cfe63a0, type: 3}
@@ -20935,6 +20937,7 @@ MonoBehaviour:
   intensityChangeRate: 0.1
   timeToHeal: 5
   healAmount: 15
+  healingEffect: {fileID: 198297634847316230, guid: 49cf6972d1c9a7e4d8348f349bf08e74, type: 3}
 --- !u!135 &1884536677
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25523,6 +25526,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2937350337175527137, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
+      propertyPath: healReceiveEffect
+      value: 
+      objectReference: {fileID: 7245011170207884034, guid: 95dc005529159b1439c2e5eebecd772c, type: 3}
+    - target: {fileID: 2937350337175527137, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -25704,7 +25711,7 @@ PrefabInstance:
       objectReference: {fileID: 1410463197}
     - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: moveSpeed
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: attackDamage

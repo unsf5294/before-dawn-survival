@@ -12,6 +12,7 @@ public class Artifact : MonoBehaviour
     [Header("Healing Settings")]
     [SerializeField] private float timeToHeal = 5.0f;
     [SerializeField] private int healAmount = 20;
+    [SerializeField] private ParticleSystem healingEffect;
 
     private bool isPlayerNearby = false;
     private bool shrineConsumed = false; // Flag to check if shrine is already consumed
@@ -67,9 +68,11 @@ public class Artifact : MonoBehaviour
         if (isPlayerNearby && !shrineConsumed) // If player is still near the shrine after the duration and the shrine is not consumed
         {
             PlayerHealth playerHealth = playerObj.GetComponent<PlayerHealth>();
+            var particles = Instantiate(this.healingEffect);
+            particles.transform.position = transform.position;
             if (playerHealth)
             {
-                playerHealth.AddHealth(healAmount);
+                playerHealth.AddHealthWithDelay(healAmount, 2.5f);
             }
             isPlayerNearby = false; 
             shrineConsumed = true; // Mark the shrine as consumed
