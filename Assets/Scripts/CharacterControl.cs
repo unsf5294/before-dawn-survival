@@ -21,6 +21,7 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private float Ability2Cooldown = 20;
     [SerializeField] private float Ability3Cooldown = 12;
     [SerializeField] private SkillAvailabilityUI skillUI;
+    [SerializeField] private GameObject hammerHead;
     public GameObject enemyManager;
 
     public AudioClip attackSound1;
@@ -39,6 +40,7 @@ public class CharacterControl : MonoBehaviour
     private bool isAttacking = false;
     private float attackAnimationDuration; 
     private int currentAttack = 1;
+    private HammerHeadControl hammerHeadControl;
 
     private void Start()
     {
@@ -47,7 +49,7 @@ public class CharacterControl : MonoBehaviour
         baseMoveSpeed = moveSpeed;
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(GrantAbilitiesOverTime());
-        
+        hammerHeadControl = hammerHead.GetComponent<HammerHeadControl>();
     }
 
     void Update()
@@ -141,6 +143,7 @@ public class CharacterControl : MonoBehaviour
             Debug.Log("Attack triggered: " + currentAttack);
             animator.SetBool("IsMoving", false);
             isAttacking = true;
+            hammerHeadControl.setIsAttacking(true);
 
             PerformAttack();
 
@@ -179,6 +182,7 @@ public class CharacterControl : MonoBehaviour
         animator.SetBool("Attack2", false);
         animator.SetBool("Attack3", false);
         isAttacking = false;
+        hammerHeadControl.setIsAttacking(false);
     }
 
     void HandleShieldBash()
