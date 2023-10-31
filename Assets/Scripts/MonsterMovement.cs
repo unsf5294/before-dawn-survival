@@ -136,7 +136,6 @@ private void HandleAttack()
     isAttacking = true;
 
     animator.SetBool("isAttack", true);
-    animator.SetBool("attack02", true);
 
     StartCoroutine(ResetAttackAnimation());
     Debug.Log(isAttacking);

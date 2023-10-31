@@ -100,7 +100,9 @@ In conclusion, the game testing session provided us with valuable insights into 
 
 ## Shaders and Special Effects
 
-TODO (due milestone 3) - see specification for details
+We made 2 particle system to indicate healing effect after killing enemy and capture artifact, for the 2 particle systems, we used a custom unlit shader to ignore lighting in the scene while using sin() function to control the lighting of each particle to have a blinking effect on the particle in order to achieve a more dynamic feel in the effect.
+Another shader used is an blinn-phong shader learned in tutorial, which used as a switch for the weapon's head, in order to enhance the attacking animation in a dark environment, we decided to give the weapon an 'energized' effect when attack.
+Both shader are located in Assets/Shaders folder and particle systems are in prefab folder.
 
 ## Summary of Contributions
 
