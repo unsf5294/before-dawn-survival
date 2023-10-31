@@ -26095,7 +26095,7 @@ PrefabInstance:
     - target: {fileID: 2937350337175527137, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: hurtSound
       value: 
-      objectReference: {fileID: 8300000, guid: 23c4c7a03ea8450439d661d9562d685a, type: 3}
+      objectReference: {fileID: 8300000, guid: c42870a5cb2637d4f8f494902a5a8251, type: 3}
     - target: {fileID: 2937350337175527137, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: maxHealth
       value: 100

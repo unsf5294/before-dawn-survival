@@ -24018,7 +24018,6 @@ GameObject:
   - component: {fileID: 4254974655528377023}
   - component: {fileID: 8517494340853622498}
   - component: {fileID: 3212356657862266986}
-  - component: {fileID: 4808578457510581765}
   - component: {fileID: 2033351749022580155}
   m_Layer: 0
   m_Name: troll_02_01_Mecanim
@@ -24125,10 +24124,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 2
+  moveSpeed: 1.5
   damage: 20
-  attackCooldown: 3
-  trackRange: 10
+  attackCooldown: 5
+  trackRange: 20
 --- !u!65 &3212356657862266986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24148,29 +24147,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15, y: 30, z: 12}
+  m_Size: {x: 20, y: 30, z: 15}
   m_Center: {x: 0, y: 15, z: 0}
---- !u!135 &4808578457510581765
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143816}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 25
-  m_Center: {x: 0, y: 8, z: 0}
 --- !u!82 &2033351749022580155
 AudioSource:
   m_ObjectHideFlags: 0

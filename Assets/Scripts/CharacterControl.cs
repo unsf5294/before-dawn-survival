@@ -20,6 +20,9 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] private float Ability1Cooldown = 10;
     [SerializeField] private float Ability2Cooldown = 20;
     [SerializeField] private float Ability3Cooldown = 12;
+    private bool ability1ready = true;
+    private bool ability2ready = true;
+    private bool ability3ready = true;
     [SerializeField] private SkillAvailabilityUI skillUI;
     [SerializeField] private GameObject hammerHead;
     public GameObject enemyManager;
@@ -230,26 +233,26 @@ public class CharacterControl : MonoBehaviour
 
     void HandleAbility()
     {
-        if (Ability1Cooldown > 0 && Input.GetKeyDown(KeyCode.Alpha1) && hasAbility[(int)AbilityType.Ability1])
+        if (ability1ready && Input.GetKeyDown(KeyCode.Alpha1) && hasAbility[(int)AbilityType.Ability1])
         {
             // Ability 1 logic 
             Ability1.Invoke();
-            StartCoroutine(Cooldown(Ability1Cooldown));
+            StartCoroutine(Cooldown1(Ability1Cooldown));
         }
-        else if (Ability2Cooldown > 0 &&  Input.GetKeyDown(KeyCode.Alpha2) && hasAbility[(int)AbilityType.Ability2])
+        else if (ability2ready &&  Input.GetKeyDown(KeyCode.Alpha2) && hasAbility[(int)AbilityType.Ability2])
         {
             // Ability 2 logic
             pushEnemies();
             Ability2.Invoke();
-            StartCoroutine(Cooldown(Ability2Cooldown));
+            StartCoroutine(Cooldown2(Ability2Cooldown));
         }
-        else if  (Ability3Cooldown > 0 && Input.GetKeyDown(KeyCode.Alpha3) && hasAbility[(int)AbilityType.Ability3])
+        else if  (ability3ready && Input.GetKeyDown(KeyCode.Alpha3) && hasAbility[(int)AbilityType.Ability3])
         {
             // Ability 3 logic
             StartCoroutine(BoostAttackDamage());
             StartCoroutine(BoostMoveSpeed());
             Ability3.Invoke();
-            StartCoroutine(Cooldown(Ability3Cooldown));
+            StartCoroutine(Cooldown3(Ability3Cooldown));
         }
     }
 
@@ -261,10 +264,10 @@ public class CharacterControl : MonoBehaviour
             enemy = enemyManager.transform.GetChild(i).gameObject;
             var heading = enemy.transform.position - player.transform.position;
             var distance = heading.magnitude;
-            var normalVec = heading / distance;
-            if (distance <= 10)
+            var normalVec = new Vector3(heading.x/distance, 0, heading.z/distance);
+            if (distance <= 5)
             {
-                StartCoroutine(enemy.GetComponent<MonsterMovement>().pushTo(player.transform.position + normalVec * 3));
+                StartCoroutine(enemy.GetComponent<MonsterMovement>().pushTo(player.transform.position + normalVec * 5));
             }
         }
     }
@@ -284,9 +287,23 @@ public class CharacterControl : MonoBehaviour
         moveSpeed = baseMoveSpeed;  // Restore the original move speed
     }
 
-    IEnumerator Cooldown(float AbilityCooldown)
+    IEnumerator Cooldown1(float AbilityCooldown)
     {
+        ability1ready = false;
         yield return new WaitForSeconds(AbilityCooldown);
-        AbilityCooldown = 0;
+        ability1ready = true;
+    }
+
+    IEnumerator Cooldown2(float AbilityCooldown)
+    {
+        ability2ready = false;
+        yield return new WaitForSeconds(AbilityCooldown);
+        ability2ready = true;
+    }
+    IEnumerator Cooldown3(float AbilityCooldown)
+    {
+        ability3ready = false;
+        yield return new WaitForSeconds(AbilityCooldown);
+        ability3ready = true;
     }
 }

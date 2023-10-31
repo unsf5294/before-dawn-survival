@@ -36,7 +36,7 @@ public class MonsterMovement : MonoBehaviour
     {
         if (!inactive)
         {
-             if (!hasCollided & player)
+             if (!hasCollided && player && !isAttacking)
             {
                 if (Vector3.Distance(player.position, transform.position) <= trackRange)
                 {
@@ -58,7 +58,7 @@ public class MonsterMovement : MonoBehaviour
     public IEnumerator pushTo(Vector3 Destination)
     {
         Vector3 Origin = transform.position;
-        float totalMovementTime = 4f; //the amount of time you want the movement to take
+        float totalMovementTime = 0.5f; //the amount of time you want the movement to take
         float currentMovementTime = 0f;//The amount of time that has passed
         inactive = true;
         while (Vector3.Distance(transform.localPosition, Destination) > 0)
@@ -141,7 +141,7 @@ private void HandleAttack()
     Debug.Log(isAttacking);
     if (playerHealth)
     {
-        playerHealth.TakeDamage(damage);
+        StartCoroutine(DamageDelay(0.5f));
     }   
     lastAttackTime = Time.time;
 
@@ -154,6 +154,11 @@ IEnumerator ResetAttackAnimation()
     isAttacking = false;
 }
 
+IEnumerator DamageDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        playerHealth.TakeDamage(damage);
+    }
 
 }
 

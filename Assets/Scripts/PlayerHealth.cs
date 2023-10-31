@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, -1, maxHealth);
         Debug.Log("Lost health: " + damage + ". Current HP: " + currentHealth);
 
-        if (playingSound == false)
+        if (damage >= 5 && playingSound == false)
         {
             StartCoroutine(playSound());
         }
