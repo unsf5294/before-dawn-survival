@@ -50182,7 +50182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 465622}
-  - component: {fileID: 9598066}
+  - component: {fileID: -7279426720345868419}
   - component: {fileID: 13565622}
   - component: {fileID: 5465622}
   - component: {fileID: -2978141540901536541}
@@ -50219,7 +50219,7 @@ Transform:
   - {fileID: 434722}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9598066
+--- !u!95 &-7279426720345868419
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -50256,7 +50256,7 @@ SphereCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 10
@@ -50271,7 +50271,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 500
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 999
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

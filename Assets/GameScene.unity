@@ -8172,6 +8172,7 @@ GameObject:
   - component: {fileID: 903524835}
   - component: {fileID: 903524834}
   - component: {fileID: 903524833}
+  - component: {fileID: 903524837}
   - component: {fileID: 903524832}
   m_Layer: 0
   m_Name: MapBorder
@@ -8282,6 +8283,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &903524837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903524831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3ce0fb895b8d94397f89083f7bb6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 30
 --- !u!1 &910214576
 GameObject:
   m_ObjectHideFlags: 0
@@ -12716,6 +12730,10 @@ PrefabInstance:
     - target: {fileID: 465622, guid: b7f1dfc4e01f4a645a02f3816571583e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465622, guid: b7f1dfc4e01f4a645a02f3816571583e, type: 3}
+      propertyPath: m_AngularDrag
+      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26252,7 +26270,7 @@ PrefabInstance:
       objectReference: {fileID: 1410463197}
     - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: moveSpeed
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: hammerHead
