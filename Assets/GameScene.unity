@@ -5335,7 +5335,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 996, y: 543}
+  m_SizeDelta: {x: 1050, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &402954042
 MonoBehaviour:
@@ -9533,6 +9533,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MonsterSpawner, Assembly-CSharp
         m_MethodName: DeactivateMonsters
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1522046584}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17085,7 +17097,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3255322fa529eef4eb22bb0435a623c7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
@@ -19440,7 +19452,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3255322fa529eef4eb22bb0435a623c7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
@@ -26081,9 +26093,17 @@ PrefabInstance:
       value: 0.34575167
       objectReference: {fileID: 0}
     - target: {fileID: 2937350337175527137, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
+      propertyPath: hurtSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 23c4c7a03ea8450439d661d9562d685a, type: 3}
+    - target: {fileID: 2937350337175527137, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2937350337175527137, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 4394186219309829}
     - target: {fileID: 2937350337175527137, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: healReceiveEffect
       value: 
@@ -26270,7 +26290,7 @@ PrefabInstance:
       objectReference: {fileID: 1410463197}
     - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3029578686206835716, guid: 55b15c54f772f0c4b86e1a98dd773f12, type: 3}
       propertyPath: hammerHead

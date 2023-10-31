@@ -39119,7 +39119,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -39172,7 +39172,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -39225,7 +39225,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -39278,7 +39278,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -50183,7 +50183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 465622}
   - component: {fileID: -7279426720345868419}
-  - component: {fileID: 13565622}
+  - component: {fileID: 8176875463642536717}
   - component: {fileID: 5465622}
   - component: {fileID: -2978141540901536541}
   - component: {fileID: -3686075190179435940}
@@ -50240,8 +50240,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &13565622
-SphereCollider:
+--- !u!136 &8176875463642536717
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -50258,9 +50258,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 10, z: -1.2071486}
+  serializedVersion: 2
+  m_Radius: 7
+  m_Height: 20
+  m_Direction: 1
+  m_Center: {x: 0, y: 10, z: 0}
 --- !u!54 &5465622
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50397,7 +50399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 2
+  moveSpeed: 1
   damage: 5
   attackCooldown: 2
   trackRange: 10
@@ -50413,6 +50415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fce729578aae04f906fea822eaea60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 150
   playerHealing: 10
   healingEffect: {fileID: 198297634847316230, guid: 49cf6972d1c9a7e4d8348f349bf08e74, type: 3}

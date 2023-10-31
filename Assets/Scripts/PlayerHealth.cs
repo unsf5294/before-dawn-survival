@@ -7,6 +7,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private UnityEvent onDeath;
     [SerializeField] private ParticleSystem healReceiveEffect;
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioSource audioSource;
+    private bool playingSound = false;
     private int currentHealth;
 
     public int CurrentHealth
@@ -45,10 +48,23 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, -1, maxHealth);
         Debug.Log("Lost health: " + damage + ". Current HP: " + currentHealth);
 
+        if (playingSound == false)
+        {
+            StartCoroutine(playSound());
+        }
+
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    private IEnumerator playSound()
+    {
+        playingSound = true;
+        audioSource.PlayOneShot(hurtSound);
+        yield return new WaitForSeconds(0.1f);
+        playingSound = false;
     }
 
     public void AddHealth(int healthAmount)
