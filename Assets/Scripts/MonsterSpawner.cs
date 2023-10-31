@@ -6,7 +6,9 @@ using Unity.VisualScripting;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject monsterPrefab; // The monster prefab to spawn
+    public GameObject monsterPrefab1; // The monster prefab to spawn
+    public GameObject monsterPrefab2;
+    public GameObject monsterPrefab3;
     private List<GameObject> monsters = new List<GameObject>();
     [SerializeField] private GameObject monsterSpawner; // Parent object to all spawned enemies
     [SerializeField] private Transform player;
@@ -23,10 +25,12 @@ public class MonsterSpawner : MonoBehaviour
             monsters.Add(monster.gameObject);
         }
 
-        StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnRoutine(monsterPrefab1, 1));
+        StartCoroutine(SpawnRoutine(monsterPrefab2, 1));
+        StartCoroutine(SpawnRoutine(monsterPrefab3, 2));
     }
 
-    private IEnumerator SpawnRoutine()
+    private IEnumerator SpawnRoutine(GameObject monsterPrefab, float intervalFactor)
     {
         yield return new WaitForSeconds(initialDelay);
         float startTime = Time.time;
@@ -34,12 +38,12 @@ public class MonsterSpawner : MonoBehaviour
         //Spawn one enemy per interval
         while (true)
         {
-            SpawnMonster(SpawnRadiusMin, SpawnRadiusMax);
-            yield return new WaitForSeconds(SpawnInterval);
+            SpawnMonster(SpawnRadiusMin, SpawnRadiusMax, monsterPrefab);
+            yield return new WaitForSeconds(SpawnInterval*intervalFactor);
         }
     }
 
-    private void SpawnMonster(float minRadius, float maxRadius)
+    private void SpawnMonster(float minRadius, float maxRadius, GameObject monsterPrefab)
     {
         Vector3 spawnPosition = player.position + (Random.onUnitSphere * Random.Range(minRadius, maxRadius));
         spawnPosition.y = 0; // Assuming you want to spawn on the ground level

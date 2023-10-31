@@ -264,7 +264,7 @@ public class CharacterControl : MonoBehaviour
             var normalVec = heading / distance;
             if (distance <= 10)
             {
-                StartCoroutine(enemy.GetComponent<MonsterMovement>().pushTo(normalVec * 3));
+                StartCoroutine(enemy.GetComponent<MonsterMovement>().pushTo(player.transform.position + normalVec * 3));
             }
         }
     }
