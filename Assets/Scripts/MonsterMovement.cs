@@ -36,7 +36,7 @@ public class MonsterMovement : MonoBehaviour
     {
         if (!inactive)
         {
-             if (!hasCollided && player && !isAttacking)
+             if (!hasCollided && player)
             {
                 if (Vector3.Distance(player.position, transform.position) <= trackRange)
                 {
