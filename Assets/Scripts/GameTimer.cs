@@ -20,6 +20,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private GameObject textParent;
     [SerializeField] private Text text;
     private int triggeredWave = 0;
+    private bool triggeredEnd = false;
 
     void Start()
     {
@@ -53,8 +54,10 @@ public class GameTimer : MonoBehaviour
             wave3Event.Invoke();
         }
 
-        if (inGameTime >= gameTime)
+        if (!triggeredEnd && inGameTime >= gameTime)
         {
+            triggeredEnd = true;
+            RunManager.Instance.TriggerVictory();
             endofGame.Invoke();
         }
     }

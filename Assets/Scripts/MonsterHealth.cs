@@ -37,6 +37,8 @@ public class MonsterHealth : MonoBehaviour
 
     private void Die()
     {
+        RunManager.Instance.RegisterKill();
+
         var particles = Instantiate(this.healingEffect);
         particles.transform.position = transform.position;
         

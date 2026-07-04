@@ -235,8 +235,9 @@ public class CharacterControl : MonoBehaviour
     {
         if (ability1ready && Input.GetKeyDown(KeyCode.Alpha1) && hasAbility[(int)AbilityType.Ability1])
         {
-            // Ability 1 logic 
+            // Ability 1 logic
             Ability1.Invoke();
+            RunManager.Instance.RegisterAbilityUsed();
             StartCoroutine(Cooldown1(Ability1Cooldown));
         }
         else if (ability2ready &&  Input.GetKeyDown(KeyCode.Alpha2) && hasAbility[(int)AbilityType.Ability2])
@@ -244,6 +245,7 @@ public class CharacterControl : MonoBehaviour
             // Ability 2 logic
             pushEnemies();
             Ability2.Invoke();
+            RunManager.Instance.RegisterAbilityUsed();
             StartCoroutine(Cooldown2(Ability2Cooldown));
         }
         else if  (ability3ready && Input.GetKeyDown(KeyCode.Alpha3) && hasAbility[(int)AbilityType.Ability3])
@@ -252,6 +254,7 @@ public class CharacterControl : MonoBehaviour
             StartCoroutine(BoostAttackDamage());
             StartCoroutine(BoostMoveSpeed());
             Ability3.Invoke();
+            RunManager.Instance.RegisterAbilityUsed();
             StartCoroutine(Cooldown3(Ability3Cooldown));
         }
     }
