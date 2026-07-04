@@ -74,7 +74,8 @@ public class Artifact : MonoBehaviour
             {
                 playerHealth.AddHealthWithDelay(healAmount, 2.5f);
             }
-            isPlayerNearby = false; 
+            RunManager.Instance.RegisterArtifact();
+            isPlayerNearby = false;
             shrineConsumed = true; // Mark the shrine as consumed
             shrineLight.intensity = 0; // Turn off the light
         }

@@ -5,6 +5,9 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
+    [Header("Faith drain")]
+    [SerializeField] private float drainInterval = 3f; // seconds between passive Faith loss
+    [SerializeField] private int drainAmount = 1;      // Faith lost per tick
     [SerializeField] private UnityEvent onDeath;
     [SerializeField] private ParticleSystem healReceiveEffect;
     [SerializeField] private AudioClip hurtSound;
@@ -37,8 +40,10 @@ public class PlayerHealth : MonoBehaviour
     {
         while (currentHealth > 0)
         {
-            yield return new WaitForSeconds(3f); // Wait for 3 seconds
-            TakeDamage(1); // Decrease by one point
+            // Higher difficulty drains faith faster (shorter interval).
+            float interval = drainInterval / Mathf.Max(0.01f, GameSettings.FaithDrainMultiplier);
+            yield return new WaitForSeconds(interval);
+            TakeDamage(drainAmount);
         }
     }
 
@@ -91,6 +96,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died!");
+        RunManager.Instance.TriggerDefeat();
         this.onDeath.Invoke();
         Destroy(this.gameObject);
     }
