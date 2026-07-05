@@ -10,8 +10,11 @@ until dawn. The health bar is **"Faith"**: it drains passively and from hits, an
 restored by killing enemies and touching artifacts. Build target is **WebGL**,
 auto-deployed to GitHub Pages from `main`.
 
-Long-term direction: grow into a **meta-progression roguelike** (run-to-run
-upgrades, the Sisyphus "memory across loops" hook). See [docs/ROADMAP.md](docs/ROADMAP.md).
+Long-term direction: a **Steam-quality push-your-luck roguelike** — Faith as
+health/timer/ammo/currency, four night phases, procedural maps, meta-progression
+(the Sisyphus "memory across loops" hook), ending in a Steam release with WebGL as
+the free demo. The authoritative design is [GDD.md](GDD.md); the milestone plan is
+[docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Architecture map
 
@@ -53,6 +56,8 @@ Both are in the build list.
    Full spec (types, scopes) in [CONTRIBUTING.md](CONTRIBUTING.md).
 3. **One logical change per branch → PR → squash-merge** once the build is green.
    Delete the branch after merge.
+4. **GDD.md is a living document.** If a gameplay PR changes the design (mechanics,
+   numbers, content), update [GDD.md](GDD.md) in the same branch.
 
 ## Unity gotchas for agents
 
@@ -71,8 +76,9 @@ Both are in the build list.
 ## Where things live
 
 - [README.md](README.md) — player-facing overview, controls, how to run.
-- [docs/ROADMAP.md](docs/ROADMAP.md) — phased enhancement plan.
+- [GDD.md](GDD.md) — **the living design document** (vision, mechanics, numbers).
+- [docs/ROADMAP.md](docs/ROADMAP.md) — 7-milestone plan to Steam, with checklists.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — commit + branch conventions.
 - [docs/WEBGL_DEPLOYMENT.md](docs/WEBGL_DEPLOYMENT.md) — WebGL build & Pages setup.
-- [GDD.md](GDD.md) — original game design document.
+- [docs/GDD_ORIGINAL.md](docs/GDD_ORIGINAL.md) — archived university GDD.
 - [docs/PROJECT_REPORT.md](docs/PROJECT_REPORT.md) — archived academic write-up.
