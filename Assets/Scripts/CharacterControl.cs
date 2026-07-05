@@ -9,11 +9,9 @@ public class CharacterControl : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private int attackDamage = 40;
     [SerializeField] private float attackRange = 5.0f; 
     [SerializeField] private float coneAngle = 45.0f;
-    [SerializeField] private float RotationSpeed = 0.1f;
     [SerializeField] private UnityEvent Ability1;
     [SerializeField] private UnityEvent Ability2;
     [SerializeField] private UnityEvent Ability3;
@@ -37,9 +35,9 @@ public class CharacterControl : MonoBehaviour
     //private bool[] hasAbility = new bool[4] { true, true, true, true }; // only for debug
 
     private int baseAttackDamage;
-    private float baseMoveSpeed;
     private float CurrentCD;
     private Animator animator;
+    private PlayerMotor playerMotor;
     private bool isAttacking = false;
     private float attackAnimationDuration; 
     private int currentAttack = 1;
@@ -48,8 +46,8 @@ public class CharacterControl : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        playerMotor = GetComponent<PlayerMotor>();
         baseAttackDamage = attackDamage;
-        baseMoveSpeed = moveSpeed;
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(GrantAbilitiesOverTime());
         hammerHeadControl = hammerHead.GetComponent<HammerHeadControl>();
@@ -59,40 +57,8 @@ public class CharacterControl : MonoBehaviour
     {
         HandleAttack();
         HandleShieldBash();
-        HandleMovement();
+        if (playerMotor) playerMotor.CanMove = !isAttacking;
         HandleAbility();
-    }
-
-    void HandleMovement()
-    {
-        if (isAttacking) return;
-
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        // Get camera forward and right vectors, with no vertical component
-        Vector3 camFwd = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-        Vector3 camRight = Vector3.Scale(Camera.main.transform.right, new Vector3(1, 0, 1)).normalized;
-
-        // Adjust move direction relative to camera orientation
-        Vector3 moveDirection = vertical * camFwd + horizontal * camRight;
-
-        if (moveDirection.magnitude > 1.0f)
-        {
-            moveDirection = moveDirection.normalized;
-        }
-
-        if (moveDirection.magnitude > 0f)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, RotationSpeed);
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
-            animator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            animator.SetBool("IsMoving", false);
-        }
     }
 
     private void PerformAttack()
@@ -285,9 +251,9 @@ public class CharacterControl : MonoBehaviour
 
     IEnumerator BoostMoveSpeed()
     {
-        moveSpeed *= 1.5f;
+        playerMotor.SpeedMultiplier = 1.5f;
         yield return new WaitForSeconds(10);  // Wait for 10 seconds
-        moveSpeed = baseMoveSpeed;  // Restore the original move speed
+        playerMotor.SpeedMultiplier = 1f;  // Restore normal move speed
     }
 
     IEnumerator Cooldown1(float AbilityCooldown)
