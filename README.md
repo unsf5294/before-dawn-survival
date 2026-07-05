@@ -67,13 +67,14 @@ Unity can build this to **WebGL**, which is just static files (`index.html` + a 
 
 ## Credits & origin
 
-Originally built for **COMP30019 (Graphics & Interaction), University of Melbourne**, by a three-person team — **Yuecheng Wang, Junyan Lai, Jingxuan Zhang**. The original academic write-up (evaluation plan, playtest report, shader notes) is preserved at **[docs/PROJECT_REPORT.md](docs/PROJECT_REPORT.md)**, and the design doc lives in **[GDD.md](GDD.md)**.
+Originally built for **COMP30019 (Graphics & Interaction), University of Melbourne**, by a three-person team — **Yuecheng Wang, Junyan Lai, Jingxuan Zhang**. The original academic write-up is preserved at **[docs/PROJECT_REPORT.md](docs/PROJECT_REPORT.md)** and the original GDD at **[docs/GDD_ORIGINAL.md](docs/GDD_ORIGINAL.md)**. The **living design document** for the game's ongoing development is **[GDD.md](GDD.md)**.
 
 Third-party assets (Unity Asset Store / Mixkit) are credited in [docs/PROJECT_REPORT.md](docs/PROJECT_REPORT.md#references-and-external-resources).
 
 ## Roadmap
 
-Ongoing solo enhancement toward a fuller game:
-- [ ] Tighter core loop and clearer Faith-economy feedback
-- [ ] More enemy variety and richer interactions
-- [ ] Live WebGL build playable from this README
+In active development toward a **Steam release** (this WebGL build stays as the free
+demo). The redesign makes Faith a push-your-luck resource — health, timer, ammo, and
+currency in one bar — across a four-phase night with procedural maps, Rites & Dark
+Pacts, seven enemy encounters, and meta-progression. Full design in
+**[GDD.md](GDD.md)**; milestones and progress in **[docs/ROADMAP.md](docs/ROADMAP.md)**.
