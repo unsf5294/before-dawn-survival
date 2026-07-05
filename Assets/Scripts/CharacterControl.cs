@@ -270,7 +270,8 @@ public class CharacterControl : MonoBehaviour
             var normalVec = new Vector3(heading.x/distance, 0, heading.z/distance);
             if (distance <= 5)
             {
-                StartCoroutine(enemy.GetComponent<MonsterMovement>().pushTo(player.transform.position + normalVec * 5));
+                var motor = enemy.GetComponent<EnemyMotor>();
+                if (motor) motor.Knockback(normalVec, 8f);
             }
         }
     }
